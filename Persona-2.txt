@@ -1,0 +1,28 @@
+Persona-2
+
+Name: Donald
+
+Role:Coach
+
+Demographic:
+
+• Male
+• 45-50 yrs old
+• Lives in San Francisco
+• Coach in a national Foorball team
+
+Behaviour:
+
+• Coaches football players 8 hours/day
+• Goes to gym everyday
+• Commutes from San Francisco to Palo Alto on the Caltrain everyday
+• Tries to take a walk around the building at lunch
+
+
+Goals:
+
+• Wants to analyze how the players are getting trained
+• Wants to know about the fitness of each players in the team
+• Wants the players to be more fit and active
+• Wants players to follow the proper diet plan 
+• Wants to stabilize the fitness level of all the players

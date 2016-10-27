@@ -1,0 +1,29 @@
+Persona-1
+
+Name: Smith
+
+Role:Player 
+
+Demographic:
+
+• Male
+• 25-30 yrs old
+• Lives in San Francisco
+• Plays in a national football team
+
+Behaviour:
+
+• Plays football 5 hours/day
+• Goes to gym everyday
+• Commutes from San Francisco to Palo Alto on the Caltrain everyday
+• Tries to take a walk around the building at lunch
+• Goes to a group yoga class thrice a week
+• Enjoys hanging out with friends on the weekend and going to the local restaurant
+• Is a foodie
+
+Goals:
+
+• Wants to walk at least 100,000 steps a day
+• Wants to know when he’s reached her fitness goals
+• Wants to be more active when he’s at game
+• Wants to be motivated
