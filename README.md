@@ -20,3 +20,5 @@ Using Fitness IOT devices such as Jawbone, Garmin Vivofit, FitBit etc, a small t
 This web based system can allow coaches to explore player's activity and with enough data they can have their own Analytics dashboards using opensource technologies like R and Shiny to build smart dashboards for team management.
 
 This can also be possibly extended with a mobile app to allow the coaches to monitor the progress on the go
+
+![architecture diagram](https://cloud.githubusercontent.com/assets/17165443/19755925/01385132-9bce-11e6-8efb-71baef59b0cf.png)
