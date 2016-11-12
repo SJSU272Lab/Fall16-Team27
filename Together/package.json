@@ -1,0 +1,15 @@
+{
+  "name": "TogetherPOC",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "3.2.6",
+    "ejs": "*",
+    "q": "^1.4.1",
+    "request": "^2.74.0",
+    "simple-oauth2": "^0.8.0"
+  }
+}
