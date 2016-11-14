@@ -1,6 +1,4 @@
-/**
- * Created by Parth on 11-11-2016.
- */
+
 
 var FitbitApiClient = require("../fitbitLib/fitbit-api-client"),
     client = new FitbitApiClient("227WYS", "49e37cc3990bac64980a90802e9c5cf0");
@@ -60,3 +58,76 @@ exports.getWaterLog=function (request,response)
     });
 
 }
+
+
+exports.frequentActivity=function (request,response)
+{
+    client.get("/activities/frequent.json", request.session.access_token).then(function (results)
+    {
+        console.log(results[0]);
+        response.send({result:results[0]});
+    });
+
+}
+
+exports.activity=function (request,response)
+{
+    var date=request.param("date");
+
+    client.get("/activities/date/"+date+".json", request.session.access_token).then(function (results)
+    {
+        console.log(results[0]);
+        response.send({result:results[0]});
+    });
+
+}
+exports.dailySteps=function (request,response)
+{
+
+    client.get("/activities/steps/date/today/1m.json", request.session.access_token).then(function (results)
+    {
+        console.log(results[0]);
+        response.send({result:results[0]});
+    });
+
+};
+exports.getFoodLog=function (request,response)
+{
+    var date=request.param("date");
+    client.get("/foods/log/date/"+date+".json", request.session.access_token).then(function (results)
+    {
+        console.log(results[0]);
+        response.send({result:results[0]});
+    });
+
+}
+
+exports.heartrate=function (request,response)
+{
+
+    client.get("/activities/heart/date/today/1d.json", request.session.access_token).then(function (results)
+    {
+        console.log(results[0]);
+        response.send({result:results[0]});
+    });
+
+}
+exports.intradayHeartRate=function (request,response)
+{
+    var date=request.param("date");
+    var detailLevel=request.param("detailLevel");
+    var start=request.param("start");
+    var end=request.param("end");
+
+
+    client.get("/activities/heart/date/"+date+"/1d/"+detailLevel+"/time/"+start+"/"+end+".json", request.session.access_token).then(function (results)
+    {
+        console.log(results[0]);
+        response.send({result:results[0]});
+    });
+
+
+
+
+}
+

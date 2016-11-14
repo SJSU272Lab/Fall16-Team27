@@ -36,6 +36,18 @@ app.get('/friends',home.friends);
 app.get('/home',home.home);
 app.get('/friendsLeaderBoard',home.friendsLeaderBoard);
 app.get('/getWaterLog',home.getWaterLog);
+app.get('/frequentActivity',home.frequentActivity);
+app.get('/activity',home.activity);
+app.get('/dailySteps',home.dailySteps);
+app.get('/getFoodLog',home.getFoodLog);
+
+app.get('/heartrate',home.heartrate);
+
+app.get('/intradayHeartRate',home.intradayHeartRate);
+
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
