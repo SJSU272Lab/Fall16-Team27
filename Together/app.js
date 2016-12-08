@@ -13,6 +13,10 @@ var mongoStore = require("connect-mongo")(session);
 var mongo = require("mongodb").MongoClient;
 
 
+var user = require('./routes/user');
+var home=require('./routes/home');
+var players=require('./routes/players');
+var mongo=require('./model/mongoconnect');
 var app = express();
 app.use(session({
 
@@ -57,6 +61,9 @@ app.get('/intradayHeartRate',home.intradayHeartRate);
 
 app.post('/authorize',home.authorize);
 
+app.post('/authenticate',user.authenticate);
+app.get('/getPlayers',players.getPlayers);
+app.get('/addPlayer',players.addPlayer);
 
 
 
