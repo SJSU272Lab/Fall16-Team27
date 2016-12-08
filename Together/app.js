@@ -5,16 +5,17 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session=require('client-sessions');
-
+var http = require('http')
 var index = require('./routes/index');
 var users = require('./routes/users');
-var home=require('./routes/home');
-var app = express();
+var authentication=require('./routes/authentication');
+var playerOverview=require('./routes/playerOverview');
 
+var app = express();
 app.use(session({
 
   cookieName: 'session',
-  secret: 'ebay_secret',
+  secret: 'together_secret',
   duration: 30 * 60 * 1000,    //setting the time for active session
   activeDuration: 5 * 60 * 1000,  }));
 // view engine setup
@@ -31,19 +32,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
-app.get('/',home.authorize);
-app.get('/friends',home.friends);
-app.get('/home',home.home);
-app.get('/friendsLeaderBoard',home.friendsLeaderBoard);
-app.get('/getWaterLog',home.getWaterLog);
-app.get('/frequentActivity',home.frequentActivity);
-app.get('/activity',home.activity);
-app.get('/dailySteps',home.dailySteps);
-app.get('/getFoodLog',home.getFoodLog);
+app.get('/',authentication.authorize);
+app.get('/getPlayers',playerOverview.getPlayers);
+app.get('/home',authentication.home);
 
-app.get('/heartrate',home.heartrate);
+app.get('/activity',playerOverview.activity);
+app.get('/dailySteps',playerOverview.dailySteps);
 
-app.get('/intradayHeartRate',home.intradayHeartRate);
+app.get('/heartrate',playerOverview.heartrate);
+
 
 
 
@@ -68,5 +65,8 @@ app.use(function(err, req, res, next) {
 });
 
 
+http.createServer(app).listen(app.get('port'), function(){
+  console.log('Together server listening on port ' + app.get('port'));
+});
 
 module.exports = app;

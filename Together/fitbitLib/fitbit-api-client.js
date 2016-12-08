@@ -156,7 +156,7 @@ FitbitApiClient.prototype = {
             }
         });
 
-         return deferred.promise;
+        return deferred.promise;
     },
 
     delete: function (path, accessToken, userId) {
