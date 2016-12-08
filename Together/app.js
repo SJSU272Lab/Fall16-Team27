@@ -8,6 +8,7 @@ var session=require('client-sessions');
 var http = require('http')
 var index = require('./routes/index');
 var users = require('./routes/users');
+var user = require('./routes/user');
 var home=require('./routes/home');
 var app = express();
 app.set('port', process.env.PORT || 3000);
@@ -44,6 +45,9 @@ app.get('/getRunningIntensityData',home.getRunningIntensityData);
 app.get('/heartrate',home.heartrate);
 
 app.get('/intradayHeartRate',home.intradayHeartRate);
+
+
+app.post('/authenticate',user.authenticate);
 
 
 
