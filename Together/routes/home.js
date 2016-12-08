@@ -167,3 +167,4 @@ exports.getRunningIntensityData=function(request,response)
    }
    response.send({result:result}) ;
 }
+

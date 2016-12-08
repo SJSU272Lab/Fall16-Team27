@@ -10,6 +10,8 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var user = require('./routes/user');
 var home=require('./routes/home');
+var players=require('./routes/players');
+var mongo=require('./model/mongoconnect');
 var app = express();
 app.set('port', process.env.PORT || 3000);
 app.use(session({
@@ -51,8 +53,8 @@ app.get('/intradayHeartRate',home.intradayHeartRate);
 
 
 app.post('/authenticate',user.authenticate);
-
-
+app.get('/getPlayers',players.getPlayers);
+app.get('/addPlayer',players.addPlayer);
 
 
 
@@ -75,8 +77,5 @@ app.use(function(err, req, res, next) {
 });
 
 
-http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
-});
 
 module.exports = app;
