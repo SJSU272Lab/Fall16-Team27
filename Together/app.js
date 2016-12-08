@@ -8,16 +8,22 @@ var session=require('client-sessions');
 var http = require('http')
 var index = require('./routes/index');
 var users = require('./routes/users');
-var user = require('./routes/user');
-var home=require('./routes/home');
+var home = require('./routes/home');
+var mongoStore = require("connect-mongo")(session);
+var mongo = require("mongodb").MongoClient;
+
+
 var app = express();
-app.set('port', process.env.PORT || 3000);
 app.use(session({
 
-  cookieName: 'session',
-  secret: 'ebay_secret',
-  duration: 30 * 60 * 1000,    //setting the time for active session
-  activeDuration: 5 * 60 * 1000,  }));
+    cookieName: 'session',
+    secret: 'together_secret',
+    duration: 30 * 60 * 1000,    //setting the time for active session
+    activeDuration: 5 * 60 * 1000,
+    store: new mongoStore({
+    url: 'mongodb://fitbit:ranjan123@ds153677.mlab.com:53677/together'
+})
+}));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -36,7 +42,6 @@ app.get('/home',function (req,res) {
   res.sendfile('./public/sidebar.html', { title: 'Express',body:"" });
 })
 //app.get('/',home.authorize);
-app.get('/friends',home.friends);
 app.get('/home',home.home);
 app.get('/friendsLeaderBoard',home.friendsLeaderBoard);
 app.get('/getWaterLog',home.getWaterLog);
@@ -50,33 +55,28 @@ app.get('/heartrate',home.heartrate);
 app.get('/intradayHeartRate',home.intradayHeartRate);
 
 
-app.post('/authenticate',user.authenticate);
-
+app.post('/authorize',home.authorize);
 
 
 
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
 });
 
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error');
 });
 
-
-http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
-});
 
 module.exports = app;

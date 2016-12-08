@@ -1,7 +1,7 @@
 
 
 var FitbitApiClient = require("../fitbitLib/fitbit-api-client"),
-    client = new FitbitApiClient("227WYS", "49e37cc3990bac64980a90802e9c5cf0");
+    client = new FitbitApiClient("227WYS", "d3147ca5060c4d920e3e3bc2050953f0");
 
 exports.authorize=function(request,response)
 {
