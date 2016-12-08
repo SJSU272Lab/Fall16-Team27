@@ -3,8 +3,8 @@ var router = express.Router();
 
 /* GET home page. */
 
-router.get('/index', function(req, res, next){
-  res.render('index', { title: 'Express',body:"" });
+router.get('/', function(req, res, next){
+  res.sendfile('./public/sidebar.html', { title: 'Express',body:"" });
 });
 
 /*router.get('/friends', function(req, res, next){

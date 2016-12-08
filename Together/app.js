@@ -31,7 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
-app.get('/',home.authorize);
+//app.get('/',home.authorize);
 app.get('/friends',home.friends);
 app.get('/home',home.home);
 app.get('/friendsLeaderBoard',home.friendsLeaderBoard);
