@@ -131,3 +131,39 @@ exports.intradayHeartRate=function (request,response)
 
 }
 
+exports.getRunningIntensityData=function(request,response)
+{
+   var result=[];
+   for(var i=1;i<=5;i++)
+   {
+       var player1="Player"+i;
+       var player2="Player"+(11-i);
+       var temp1=
+           {
+                "playerName":player1,
+                "day1":7,
+                "day2":8,
+                "day3":5,
+                "day4":9,
+                "day5":3,
+                "day6":6,
+                "day7":1
+           };
+       var temp2=
+           {
+               "playerName":player2,
+               "day1":4,
+               "day2":7,
+               "day3":6,
+               "day4":2,
+               "day5":4,
+               "day6":3,
+               "day7":4
+           }
+           result.push(temp1);
+            result.push(temp2);
+
+
+   }
+   response.send({result:result}) ;
+}

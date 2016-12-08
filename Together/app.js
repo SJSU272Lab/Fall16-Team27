@@ -40,7 +40,7 @@ app.get('/frequentActivity',home.frequentActivity);
 app.get('/activity',home.activity);
 app.get('/dailySteps',home.dailySteps);
 app.get('/getFoodLog',home.getFoodLog);
-
+app.get('/getRunningIntensityData',home.getRunningIntensityData);
 app.get('/heartrate',home.heartrate);
 
 app.get('/intradayHeartRate',home.intradayHeartRate);
