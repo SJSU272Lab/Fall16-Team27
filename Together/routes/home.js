@@ -134,7 +134,7 @@ exports.intradayHeartRate=function (request,response)
 exports.getRunningIntensityData=function(request,response)
 {
    var result=[];
-   for(var i=1;i<=5;i++)
+   for(var i=1;i<=3;i++)
    {
        var player1="Player"+i;
        var player2="Player"+(11-i);

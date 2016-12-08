@@ -32,6 +32,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
+app.get('/home',function (req,res) {
+  res.sendfile('./public/sidebar.html', { title: 'Express',body:"" });
+})
 //app.get('/',home.authorize);
 app.get('/friends',home.friends);
 app.get('/home',home.home);
