@@ -90,6 +90,7 @@ app.get('/addFrequencyData',frequency.addFrequencyData);
 app.get('/getRunningTenacityDistribution',tenacity.getRunningTenacityDistribution);
 app.get('/addIntensity',intensity.addIntensity);
 
+app.get('/getWeightingTenacityDistribution',tenacity.getRunningTenacityDistribution);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
