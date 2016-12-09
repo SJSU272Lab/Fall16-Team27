@@ -148,3 +148,34 @@ exports.addFrequencyData=function(request,response)
     response.send({statusCode:200});
 
 }
+
+exports.getPlayerFrequenyData=function (request,response)
+{
+    var currentDate=new Date();
+    var makeDate = new Date();
+    makeDate = new Date(makeDate.setDate(makeDate.getDate() - 7));
+    console.log(Date.parse(currentDate));
+    console.log(Date.parse(makeDate));
+    var resultArr=[];
+    var playerId=request.param("playerId");
+    Frequency.find({'playerId':mongoose.Types.ObjectId(playerId)})
+        .where('date').gt(makeDate).lte(currentDate)
+        .populate('playerId')
+        .exec(function (err,result)
+        {
+            if(!err)
+            {
+                console.log(result);
+                for(var i=0;i<result.length;i++)
+                {
+                    var obj=
+                    {
+                        points:result[i].runningFrequencyPoint,
+                        date:result[i].date
+                    }
+                    resultArr.push(obj);
+                }
+                response.send(resultArr);
+            }
+        });
+}

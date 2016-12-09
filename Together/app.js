@@ -89,8 +89,9 @@ app.get('/getWeeklyWeightActivityCount',frequency.getWeeklyWeightActivityCount);
 app.get('/addFrequencyData',frequency.addFrequencyData);
 app.get('/getRunningTenacityDistribution',tenacity.getRunningTenacityDistribution);
 app.get('/addIntensity',intensity.addIntensity);
-
-
+app.get('/getPlayerTenacityData',tenacity.getPlayerTenacityData);
+app.get('/getPlayerFrequenyData',frequency.getPlayerFrequenyData);
+app.get('/getPlayerIntensityData',intensity.getPlayerIntensityData);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
