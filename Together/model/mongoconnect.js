@@ -2,9 +2,7 @@
 var mongoose = require('mongoose');
 var gracefulShutdown;
 var dbURI = 'mongodb://fitbit:ranjan123@ds153677.mlab.com:53677/together';
-if (process.env.NODE_ENV === 'production') {
-    dbURI = process.env.MONGOLAB_URI;
-}
+
 mongoose.connect(dbURI, {server: {poolSize: 10}});
 
 mongoose.connection.on('connected', function () {
