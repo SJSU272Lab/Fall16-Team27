@@ -105,8 +105,6 @@ exports.getRunningTenacityData=function(request,response)
 exports.getWeightingTenacityData=function(request,response)
 {
 
-
-
     var currentDate=new Date();
     var makeDate = new Date();
     makeDate = new Date(makeDate.setDate(makeDate.getDate() - 7));
@@ -160,3 +158,75 @@ exports.getWeightingTenacityData=function(request,response)
 
 }
 
+exports.getRunningTenacityDistribution=function(request,response)
+{
+    var currentDate=new Date();
+    var makeDate = new Date();
+    makeDate = new Date(makeDate.setDate(makeDate.getDate() - 7));
+    console.log(Date.parse(currentDate));
+    console.log(Date.parse(makeDate));
+    var resultMap=new HashMap();
+    var veryLow=0,low=0,medium=0,high=0;
+    Tenacity.find({})
+        .populate('playerId')
+        .sort('playerId')
+        .exec(function (err,result)
+        {
+            if(!err)
+            {
+                for(var i=0;i<result.length;i++)
+                {
+                    if(resultMap.has(result[i].playerId.playerName))
+                    {
+                        var tempArr=resultMap.get(result[i].playerId.playerName);
+                        var tempObj=
+                        {
+                            date:result[i].date,
+                            runningSteps:result[i].runningSteps
+                        }
+                        tempArr.push(tempObj);
+                        resultMap.remove(result[i].playerId.playerName)
+                        resultMap.set(result[i].playerId.playerName,tempArr);
+                    }
+                    else
+                    {
+                        var tempObj=
+                        {
+                            date:result[i].date,
+                            runningSteps:result[i].runningSteps
+                        }
+                        var tempArr=[];
+                        tempArr.push(tempObj);
+                        resultMap.set(result[i].playerId.playerName,tempArr);
+                    }
+                }
+                resultMap.forEach(function(value, key) {
+                    console.log(key + " : " + value);
+                    var total = 0;
+                    for (var i = 0; i < value.length; i++) {
+                        total = total + value[i].runningSteps;
+                    }
+                    var average = total / (value.length + 1)
+                    //distArr.push({name:key,average:average});
+                    if (average <= 2000) {
+                        veryLow++;
+                    }
+                    else if (average > 2000 && average <= 4000) {
+                        low++;
+                    }
+                    else if (average > 4000 && average <= 6000) {
+                        medium++;
+                    }
+                    else if (average > 6000) {
+                        high++;
+                    }
+
+                });
+
+                response.send({veryLow:veryLow,low:low,medium:medium,high:high});
+            }
+            else
+                response.send({failed:"failed"});
+        });
+
+}
