@@ -19,12 +19,14 @@
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
+    <script src="js/angular.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/tenacity.controller.js"></script>
    
 
 </head>
 
-<body>
+<body ng-app="togetherApp"  ng-controller="tenacityController as vm">
 
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -95,81 +97,106 @@
             <div class="col-lg-12">
                 <h2 class="page-header">Our Team</h2>
             </div>
-            <div class="col-md-3 text-center">
+
+             <div class="Player-cards" ng-repeat="player in vm.players | orderBy:'tenacityRank'">    
+
+            <div class="col-md-4 text-center">
                 <div class="thumbnail">
-                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
+                    <img class="img-responsive" src="{{player.profilePic}}" width=149 height=149 alt="" style="border-radius:50%">
                     <div class="caption">
-                        <h4>Player Name<br>
-                            <small>Points</small>
-                        </h4>
-                        <h4>55</h4>
+                        <h3>{{player.playerName}}<br>
+                            <small>Weight : {{player.weight}}</small>
+                            <small>Height : {{player.height}}</small>
+                            <small>Age : {{player.age}}</small>
+                        </h3>
+                        <h3> Tenacity Rank : {{player.tenacityRank}}</h3>
+                        <h4> Weekly Running Tenacity : {{player.avgRunningTenacity}} Steps  </h4>
+                        <h4> Weekly Weights Tenacity : {{player.avgWeightTenacity}} Sets </h4>
+                        
 
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 text-center">
-                <div class="thumbnail">
-                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-                    <div class="caption">
-                        <h4>Player Name<br>
-                            <small>Points</small>
-                        </h4>
-                        <h4>55</h4>
-
-                    </div>
-                </div>
             </div>
-            <div class="col-md-3 text-center">
-                <div class="thumbnail">
-                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-                    <div class="caption">
-                        <h4>Player Name<br>
-                            <small>Points</small>
-                        </h4>
-                        <h4>55</h4>
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 text-center">
-                <div class="thumbnail">
-                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-                    <div class="caption">
-                        <h4>Player Name<br>
-                            <small>Points</small>
-                        </h4>
-                        <h4>55</h4>
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 text-center">
-                <div class="thumbnail">
-                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-                    <div class="caption">
-                        <h4>Player Name<br>
-                            <small>Points</small>
-                        </h4>
-                        <h4>55</h4>
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 text-center">
-                <div class="thumbnail">
-                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-                    <div class="caption">
-                        <h4>Player Name<br>
-                            <small>Points</small>
-                        </h4>
-                        <h4>55</h4>
-
-                    </div>
-                </div>
-            </div>
-
-
         </div>
+
+
+
+           <!--  <div class="col-md-3 text-center">
+                <div class="thumbnail">
+                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
+                    <div class="caption">
+                        <h4>Player Name<br>
+                            <small>Points</small>
+                        </h4>
+                        <h4>55</h4>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 text-center">
+                <div class="thumbnail">
+                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
+                    <div class="caption">
+                        <h4>Player Name<br>
+                            <small>Points</small>
+                        </h4>
+                        <h4>55</h4>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 text-center">
+                <div class="thumbnail">
+                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
+                    <div class="caption">
+                        <h4>Player Name<br>
+                            <small>Points</small>
+                        </h4>
+                        <h4>55</h4>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 text-center">
+                <div class="thumbnail">
+                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
+                    <div class="caption">
+                        <h4>Player Name<br>
+                            <small>Points</small>
+                        </h4>
+                        <h4>55</h4>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 text-center">
+                <div class="thumbnail">
+                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
+                    <div class="caption">
+                        <h4>Player Name<br>
+                            <small>Points</small>
+                        </h4>
+                        <h4>55</h4>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 text-center">
+                <div class="thumbnail">
+                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
+                    <div class="caption">
+                        <h4>Player Name<br>
+                            <small>Points</small>
+                        </h4>
+                        <h4>55</h4>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div> -->
         <!-- /.row -->
 
         <!-- Our Customers -->
@@ -244,6 +271,7 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/underscore-min.js"></script>
 
 </body>
 
