@@ -37,6 +37,7 @@ function intensityControllerFn($scope,$http) {
 								
 
 						})
+					myFunction();
 
 		})
 
@@ -73,6 +74,27 @@ function intensityControllerFn($scope,$http) {
 
 
 	})
+
+	myFunction  = function() {
+
+	//alert("My function loaded");
+  var cards = document.querySelectorAll(".card");
+  console.log("length");
+  console.log(cards.length);
+  for ( var i  = 0, len = cards.length; i < len; i++ ) {
+    var card = cards[i];
+    clickListener( card );
+  }
+
+  function clickListener(card) {
+  	//alert("clicked");
+    card.addEventListener( "click", function() {
+      var c = this.classList;
+      c.contains("flipped") === true ? c.remove("flipped") : c.add("flipped");
+    });
+  }
+} 
+
 
 
 
