@@ -4,29 +4,37 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var session=require('express-session');
+var session = require('express-session');
+
 var http = require('http')
 var index = require('./routes/index');
 var users = require('./routes/users');
 var home = require('./routes/home');
 var mongoStore = require("connect-mongo")(session);
+
 var mongo = require("mongodb").MongoClient;
 var frequency=require('./routes/frequency');
+
+var mongo=require('./model/mongoconnect');
+
+
 
 var user = require('./routes/user');
 var home=require('./routes/home');
 var players=require('./routes/players');
-var mongo=require('./model/mongoconnect');
+var intensity=require('./routes/intensity');
+
+
 var app = express();
 app.use(session({
-
-    cookieName: 'session',
-    secret: 'together_secret',
-    duration: 30 * 60 * 1000,    //setting the time for active session
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+    duration: 30 * 60 * 1000,
     activeDuration: 5 * 60 * 1000,
     store: new mongoStore({
-    url: 'mongodb://fitbit:ranjan123@ds153677.mlab.com:53677/together'
-})
+        url: "mongodb://fitbit:ranjan123@ds153677.mlab.com:53677/together"
+    })
 }));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -53,7 +61,11 @@ app.get('/frequentActivity',home.frequentActivity);
 app.get('/activity',home.activity);
 app.get('/dailySteps',home.dailySteps);
 app.get('/getFoodLog',home.getFoodLog);
-app.get('/getRunningIntensityData',home.getRunningIntensityData);
+app.get('/getRunningIntensityData',intensity.getRunningIntensityData);
+app.get('/getWeightingIntensityData',intensity.getWeightingIntensityData);
+app.get('/getAvgCaloriesRateData',intensity.getAvgCaloriesRateData);
+app.get('/getAvgDistanceRateData',intensity.getAvgDistanceRateData);
+
 app.get('/heartrate',home.heartrate);
 
 app.get('/intradayHeartRate',home.intradayHeartRate);
@@ -64,8 +76,12 @@ app.post('/authorize',home.authorize);
 app.post('/authenticate',user.authenticate);
 app.get('/getPlayers',players.getPlayers);
 app.get('/addPlayer',players.addPlayer);
+
 app.get('/getWeeklyRunActivityCount',frequency.getWeeklyRunActivityCount);
 app.get('/addFrequencyData',frequency.addFrequencyData);
+
+app.get('/addIntensity',intensity.addIntensity);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
