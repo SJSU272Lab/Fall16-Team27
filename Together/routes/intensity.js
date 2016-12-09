@@ -40,6 +40,8 @@ exports.getWeightingIntensityData=function(request,response)
     console.log("in weightingIntensityPoint");
     var currentDate=new Date();
     var makeDate = new Date();
+    var resultArray=[];
+
     makeDate = new Date(makeDate.setDate(makeDate.getDate() - 7));
     console.log(Date.parse(currentDate));
     console.log(Date.parse(makeDate));
@@ -81,8 +83,17 @@ exports.getWeightingIntensityData=function(request,response)
 
                 }
 
-                response.send(resultMap);
-            }
+                resultMap.forEach(function(value, key)
+                {
+                    var obj=
+                        {
+                            name:key,
+                            data:value
+                        }
+                    resultArray.push(obj);
+
+                });
+                response.send(resultArray);            }
             else
                 response.send({failed:"failed"});
         });
@@ -101,6 +112,8 @@ exports.getRunningIntensityData=function(request,response)
     console.log(Date.parse(currentDate));
     console.log(Date.parse(makeDate));
     var resultMap=new HashMap();
+    var resultArray=[];
+
     Intensity.find({})
         .where('date').gt(makeDate).lte(currentDate)
         .populate('playerId')
@@ -138,8 +151,17 @@ exports.getRunningIntensityData=function(request,response)
 
                 }
 
-                response.send(resultMap);
-            }
+                resultMap.forEach(function(value, key)
+                {
+                    var obj=
+                        {
+                            name:key,
+                            data:value
+                        }
+                    resultArray.push(obj);
+
+                });
+                response.send(resultArray);            }
             else
                 response.send({failed:"failed"});
         });
@@ -158,6 +180,7 @@ exports.getAvgCaloriesRateData=function(request,response)
     console.log(Date.parse(currentDate));
     console.log(Date.parse(makeDate));
     var resultMap=new HashMap();
+    var resultArray=[];
     Intensity.find({})
         .where('date').gt(makeDate).lte(currentDate)
         .populate('playerId')
@@ -194,8 +217,17 @@ exports.getAvgCaloriesRateData=function(request,response)
                     }
 
                 }
+                resultMap.forEach(function(value, key)
+                {
+                    var obj=
+                    {
+                        name:key,
+                        data:value
+                    }
+                    resultArray.push(obj);
 
-                response.send(resultMap);
+                });
+                response.send(resultArray);
             }
             else
                 response.send({failed:"failed"});
@@ -216,6 +248,7 @@ exports.getAvgDistanceRateData=function(request,response)
     console.log(Date.parse(currentDate));
     console.log(Date.parse(makeDate));
     var resultMap=new HashMap();
+    var resultArray=[];
     Intensity.find({})
         .where('date').gt(makeDate).lte(currentDate)
         .populate('playerId')
@@ -252,8 +285,18 @@ exports.getAvgDistanceRateData=function(request,response)
                     }
 
                 }
+                resultMap.forEach(function(value, key)
+                {
+                    var obj=
+                    {
+                        name:key,
+                        data:value
+                    }
+                    resultArray.push(obj);
 
-                response.send(resultMap);
+                });
+
+                response.send(resultArray);
             }
             else
                 response.send({failed:"failed"});
