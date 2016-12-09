@@ -23,6 +23,8 @@ var user = require('./routes/user');
 var home=require('./routes/home');
 var players=require('./routes/players');
 var intensity=require('./routes/intensity');
+var tenacity=require('./routes/tenacity');
+
 
 
 var app = express();
@@ -65,6 +67,9 @@ app.get('/getRunningIntensityData',intensity.getRunningIntensityData);
 app.get('/getWeightingIntensityData',intensity.getWeightingIntensityData);
 app.get('/getAvgCaloriesRateData',intensity.getAvgCaloriesRateData);
 app.get('/getAvgDistanceRateData',intensity.getAvgDistanceRateData);
+
+app.get('/addTenacity',tenacity.addTenacity);
+
 
 app.get('/heartrate',home.heartrate);
 
