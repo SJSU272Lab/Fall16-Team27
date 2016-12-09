@@ -20,6 +20,22 @@ function chartControllerFn($scope,$http) {
         return seriesData;
     }
 
+
+    var generateSeriesDataForWeightIntensityChart = function(rawData) {
+        var seriesData = [];
+
+        angular.forEach(rawData,function(d) {
+            var singlePlayerData = [];
+
+            angular.forEach(d.data,function(pData) {
+                singlePlayerData.push(pData.weightingIntensityPoint);
+            });
+            seriesData.push({'name':d.name,'data':singlePlayerData});    
+        });
+        console.log(seriesData);
+        return seriesData;
+    }
+
     /* $scope.chartOptions = {
                     title: {
                         text: 'Temperature data'
@@ -141,7 +157,7 @@ function chartControllerFn($scope,$http) {
 
         }]
     };
-     $scope.pieData = [{
+    $scope.pieData = [{
                         name: "Microsoft Internet Explorer",
                         y: 56.33
                     }, {
@@ -161,7 +177,60 @@ function chartControllerFn($scope,$http) {
                     }, {
                         name: "Proprietary or Undetectable",
                         y: 0.2
-                }]
+    }];
+
+    var getWeightIntensityData = function() {
+        $http.get('/getWeightingIntensityData').
+        then(function (data) {
+            vm.weightIntensityData = data.data;
+            var playerNames = [];
+            var generatedWeightSeriesData = generateSeriesDataForWeightIntensityChart(data.data);
+            console.log("generatedWeightSeriesData",generatedWeightSeriesData);
+           /* angular.forEach(vm.intensityData.result,function(player) {
+                playerNames.push(player.playerName);
+            });*/
+
+            $scope.weightIntensityLineChartOptions = {
+                title: {
+                    text: 'Weight Intensity Points(Weekly)',
+                    x: -20 //center
+                },
+                subtitle: {
+                    text: '',
+                    x: -20
+                },
+                xAxis: {
+                    categories: ["Day 1","Day 2","Day 3","Day 4","Day 5","Day 6","Day 7"]
+                },
+                yAxis: {
+                    title: {
+                        text: 'Points'
+                    },
+                    plotLines: [{
+                        value: 0,
+                        width: 1,
+                        color: '#808080'
+                    }]
+                },
+                tooltip: {
+                    valueSuffix: 'Points'
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'middle',
+                    borderWidth: 0
+                },
+                series: generatedWeightSeriesData
+            };
+           
+
+              
+     })
+
+    }
+    getWeightIntensityData();
+    
 }
 
 app.controller("chartController",chartControllerFn);
