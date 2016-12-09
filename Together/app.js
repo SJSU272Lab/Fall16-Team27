@@ -29,7 +29,7 @@ var tenacity=require('./routes/tenacity');
 
 var app = express();
 app.use(session({
-    secret: 'keyboard cat',
+    secret: 'together',
     resave: false,
     saveUninitialized: true,
     duration: 30 * 60 * 1000,
@@ -63,39 +63,60 @@ app.get('/frequentActivity',home.frequentActivity);
 app.get('/activity',home.activity);
 app.get('/dailySteps',home.dailySteps);
 app.get('/getFoodLog',home.getFoodLog);
-app.get('/getRunningIntensityData',intensity.getRunningIntensityData);
-app.get('/getWeightingIntensityData',intensity.getWeightingIntensityData);
-app.get('/getAvgCaloriesRateData',intensity.getAvgCaloriesRateData);
-app.get('/getAvgDistanceRateData',intensity.getAvgDistanceRateData);
-
-app.get('/addTenacity',tenacity.addTenacity);
-
-app.get('/getRunningTenacityData',tenacity.getRunningTenacityData);
-app.get('/getWeightingTenacityData',tenacity.getWeightingTenacityData);
-
 app.get('/heartrate',home.heartrate);
-
 app.get('/intradayHeartRate',home.intradayHeartRate);
 
 
+app.post('/authenticate',user.authenticate);
 app.post('/authorize',home.authorize);
 
-app.post('/authenticate',user.authenticate);
+//getting all data from player collection
 app.get('/getPlayers',players.getPlayers);
+//adding data in player collection
 app.get('/addPlayer',players.addPlayer);
 
-app.get('/getWeeklyRunActivityCount',frequency.getWeeklyRunActivityCount);
-app.get('/getWeeklyWeightActivityCount',frequency.getWeeklyWeightActivityCount);
-app.get('/addFrequencyData',frequency.addFrequencyData);
-app.get('/getRunningTenacityDistribution',tenacity.getRunningTenacityDistribution);
-app.get('/addIntensity',intensity.addIntensity);
 
+//adding data in intensity collection
+app.get('/addIntensity',intensity.addIntensity);
+//get All players' intensity points for running activity in intensity page graph
+app.get('/getRunningIntensityData',intensity.getRunningIntensityData);
+
+//get All players' intensity points for weighting activity in intensity page graph
+app.get('/getWeightingIntensityData',intensity.getWeightingIntensityData);
+
+//get All players' average calories in intensity page graph
+app.get('/getAvgCaloriesRateData',intensity.getAvgCaloriesRateData);
+
+//get All players' average distances in intensity page graph
+app.get('/getAvgDistanceRateData',intensity.getAvgDistanceRateData);
+
+//adding data in tenacity collection
+app.get('/addTenacity',tenacity.addTenacity);
+//get All players' tenacity points for running activity in tenacity page graph
+app.get('/getRunningTenacityData',tenacity.getRunningTenacityData);
+//get All players' tenacity points for weighting activity in tenacity page graph
+app.get('/getWeightingTenacityData',tenacity.getWeightingTenacityData);
+//get no of players in verylow,low,medium,high zones based on steps in weighting activity ( tenacity page pie chart)
+app.get('/getWeightingTenacityDistribution',tenacity.getRunningTenacityDistribution);
+//get no of players in verylow,low,medium,high zones based on steps in running activity ( tenacity page pie chart)
+app.get('/getRunningTenacityDistribution',tenacity.getRunningTenacityDistribution);
+
+
+//get All players' no of running activity in frequency page graph
+app.get('/getWeeklyRunActivityCount',frequency.getWeeklyRunActivityCount);
+//get All players' no of weighting activity in frequency page graph
+app.get('/getWeeklyWeightActivityCount',frequency.getWeeklyWeightActivityCount);
+//adding data in frequency collection
+app.get('/addFrequencyData',frequency.addFrequencyData);
+
+//get specific player's tenacity points
 app.get('/getPlayerTenacityData',tenacity.getPlayerTenacityData);
+//get specific player's frequency points
 app.get('/getPlayerFrequenyData',frequency.getPlayerFrequenyData);
+//get specific player's intensity points
 app.get('/getPlayerIntensityData',intensity.getPlayerIntensityData);
 
 
-app.get('/getWeightingTenacityDistribution',tenacity.getRunningTenacityDistribution);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
