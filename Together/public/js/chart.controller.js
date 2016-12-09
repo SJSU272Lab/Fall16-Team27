@@ -5,25 +5,22 @@ function chartControllerFn($scope,$http) {
 	var vm = this;
 	vm.tab='fitness';
 
-    var generateSeriesData = function(rawData) {
+    var generateSeriesDataForIntensityChart = function(rawData) {
         var seriesData = [];
 
         angular.forEach(rawData,function(d) {
-            seriesData.push({'name':d.playerName,'data':[d.day1,d.day2,d.day3,d.day4,d.day5,d.day6,d.day7]})    
+            var singlePlayerData = [];
+
+            angular.forEach(d.data,function(pData) {
+                singlePlayerData.push(pData.runningIntensityPoint);
+            });
+            seriesData.push({'name':d.name,'data':singlePlayerData});    
         });
         console.log(seriesData);
         return seriesData;
     }
 
-	$http.get('/getRunningIntensityData').
-	then(function (data) {
-            vm.intensityData = data.data;
-            var playerNames = [];
-            var generatedSeriesData = generateSeriesData(data.data.result);
-            angular.forEach(vm.intensityData.result,function(player) {
-                playerNames.push(player.playerName);
-            })
-			$scope.chartOptions = {
+    /* $scope.chartOptions = {
                     title: {
                         text: 'Temperature data'
                     },
@@ -35,14 +32,25 @@ function chartControllerFn($scope,$http) {
                     series: [{
                         data: data.data
                     }]
-                };	
+                };  */
+
+	var getIntensityData = function() {
+        $http.get('/getRunningIntensityData').
+        then(function (data) {
+            vm.intensityData = data.data;
+            var playerNames = [];
+            var generatedSeriesData = generateSeriesDataForIntensityChart(data.data);
+            angular.forEach(vm.intensityData.result,function(player) {
+                playerNames.push(player.playerName);
+            })
+           
 
             $scope.columnChartOptions = {
                 chart: {
                     type: 'column'
                 },
                 title: {
-                    text: 'Intensity Points'
+                    text: 'Running Intensity Points'
                 },
                 subtitle: {
                     text: ''
@@ -71,32 +79,13 @@ function chartControllerFn($scope,$http) {
                         borderWidth: 0
                     }
                 },
-                series:generatedSeriesData /*[{
-                    name: 'Player 1',
-                    data: [49.9, 71.5, 106.4, 129.2, 144.0]
+                series:generatedSeriesData 
+            };  
+     })
 
-                }, {
-                    name: 'Player 2',
-                    data: [83.6, 78.8, 98.5, 93.4, 106.0]
+    }
 
-                }, {
-                    name: 'Player 3',
-                    data: [48.9, 38.8, 39.3, 41.4, 47.0]
-
-                }, {
-                    name: 'Player 4',
-                    data: [42.4, 33.2, 34.5, 39.7, 52.6]
-
-                },
-                {
-                    name: 'Player 5',
-                    data: [42.4, 33.2, 34.5, 39.7, 52.6]
-
-                }]*/
-            };	
-	})
-
-
+    getIntensityData();
 
 
     $scope.columnChartOptionsSinglePlayer = {
