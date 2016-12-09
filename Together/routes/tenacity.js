@@ -56,6 +56,7 @@ exports.getRunningTenacityData=function(request,response)
     console.log(Date.parse(currentDate));
     console.log(Date.parse(makeDate));
     var resultMap=new HashMap();
+    var resultArray=[];
     Tenacity.find({})
         .where('date').gt(makeDate).lte(currentDate)
         .where('runningSteps').gt(3000)
@@ -93,8 +94,17 @@ exports.getRunningTenacityData=function(request,response)
                     }
 
                 }
+                resultMap.forEach(function(value, key)
+                {
+                    var obj=
+                    {
+                        name:key,
+                        data:value
+                    }
+                    resultArray.push(obj);
 
-                response.send(resultMap);
+                });
+                response.send(resultArray);
             }
             else
                 response.send({failed:"failed"});
@@ -111,6 +121,7 @@ exports.getWeightingTenacityData=function(request,response)
     console.log(Date.parse(currentDate));
     console.log(Date.parse(makeDate));
     var resultMap=new HashMap();
+    var resultArray=[];
     Tenacity.find({})
         .where('date').gt(makeDate).lte(currentDate)
         .where('weightingSteps').gt(30)
@@ -148,8 +159,17 @@ exports.getWeightingTenacityData=function(request,response)
                     }
 
                 }
+                resultMap.forEach(function(value, key)
+                {
+                    var obj=
+                    {
+                        name:key,
+                        data:value
+                    }
+                    resultArray.push(obj);
 
-                response.send(resultMap);
+                });
+                response.send(resultArray);
             }
             else
                 response.send({failed:"failed"});

@@ -15,6 +15,7 @@ exports.getWeeklyRunActivityCount=function (request,response)
     console.log(Date.parse(currentDate));
     console.log(Date.parse(makeDate));
     var resultMap=new HashMap();
+    var resultArray=[];
     Frequency.find({})
     .where('date').gt(makeDate).lte(currentDate)
     .populate('playerId')
@@ -51,8 +52,17 @@ exports.getWeeklyRunActivityCount=function (request,response)
                }
 
            }
+           resultMap.forEach(function(value, key)
+           {
+               var obj=
+               {
+                   name:key,
+                   data:value
+               }
+               resultArray.push(obj);
 
-           response.send(resultMap);
+           });
+           response.send(resultArray);
        }
         else
             response.send({failed:"failed"});
@@ -68,6 +78,7 @@ exports.getWeeklyWeightActivityCount=function(request,response)
     console.log(Date.parse(currentDate));
     console.log(Date.parse(makeDate));
     var resultMap=new HashMap();
+    var resultArray=[];
     Frequency.find({})
         .where('date').gt(makeDate).lte(currentDate)
         .populate('playerId')
@@ -104,8 +115,18 @@ exports.getWeeklyWeightActivityCount=function(request,response)
                     }
 
                 }
+                resultMap.forEach(function(value, key)
+                {
+                    var obj=
+                    {
+                        name:key,
+                        data:value
+                    }
+                    resultArray.push(obj);
 
-                response.send(resultMap);
+                });
+                console.log(resultArray);
+                response.send(resultArray);
             }
             else
                 response.send({failed:"failed"});
