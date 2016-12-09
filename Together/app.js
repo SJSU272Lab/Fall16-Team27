@@ -78,6 +78,7 @@ app.get('/getPlayers',players.getPlayers);
 app.get('/addPlayer',players.addPlayer);
 
 app.get('/getWeeklyRunActivityCount',frequency.getWeeklyRunActivityCount);
+app.get('/getWeeklyWeightActivityCount',frequency.getWeeklyWeightActivityCount);
 app.get('/addFrequencyData',frequency.addFrequencyData);
 
 app.get('/addIntensity',intensity.addIntensity);

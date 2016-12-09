@@ -60,6 +60,58 @@ exports.getWeeklyRunActivityCount=function (request,response)
 
 };
 
+exports.getWeeklyWeightActivityCount=function(request,response)
+{
+    var currentDate=new Date();
+    var makeDate = new Date();
+    makeDate = new Date(makeDate.setDate(makeDate.getDate() - 7));
+    console.log(Date.parse(currentDate));
+    console.log(Date.parse(makeDate));
+    var resultMap=new HashMap();
+    Frequency.find({})
+        .where('date').gt(makeDate).lte(currentDate)
+        .populate('playerId')
+        .sort('playerId')
+        .exec(function (err,result)
+        {
+            if(!err)
+            {
+
+                for(var i=0;i<result.length;i++)
+                {
+                    if(resultMap.has(result[i].playerId.playerName))
+                    {
+                        var tempArr=resultMap.get(result[i].playerId.playerName);
+                        var tempObj=
+                        {
+                            date:result[i].date,
+                            weightActivityCount:result[i].noOfWeightActivity
+                        }
+                        tempArr.push(tempObj);
+                        resultMap.remove(result[i].playerId.playerName)
+                        resultMap.set(result[i].playerId.playerName,tempArr);
+                    }
+                    else
+                    {
+                        var tempObj=
+                        {
+                            date:result[i].date,
+                            weightActivityCount:result[i].noOfWeightActivity
+                        }
+                        var tempArr=[];
+                        tempArr.push(tempObj);
+                        resultMap.set(result[i].playerId.playerName,tempArr);
+                    }
+
+                }
+
+                response.send(resultMap);
+            }
+            else
+                response.send({failed:"failed"});
+        });
+
+}
 exports.addFrequencyData=function(request,response)
 {
     var makeDate = new Date();
