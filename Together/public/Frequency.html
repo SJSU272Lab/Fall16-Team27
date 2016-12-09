@@ -16,15 +16,20 @@
 
     <!-- Custom CSS -->
     <link href="css/modern-business.css" rel="stylesheet">
-
+     <link href="css/flip.css" rel="stylesheet">
+ 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <script src="js/angular.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/frequency.controller.js"></script>
+     <script src="js/flip.js"></script>
 
    
 
 </head>
 
-<body>
+<body ng-app="togetherApp"  ng-controller="frequencyController as vm">
 
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -95,7 +100,41 @@
             <div class="col-lg-12">
                 <h2 class="page-header">Our Team</h2>
             </div>
-            <div class="col-md-3 text-center">
+            <div class="Player-cards" ng-repeat="player in vm.players | orderBy:'intensityRank'">    
+
+           
+
+                        <div class="col-md-4 text-center">
+                         
+                          <div class="thumbnail">
+                       
+                            <img class="img-responsive" src="{{player.profilePic}}" width=149 height=149 alt="" style="border-radius:50%">
+                                     <div class="caption">
+                                        <h3>{{player.playerName}}<br>
+                                            <small>Weight : {{player.weight}}</small>
+                                            <small>Height : {{player.height}}</small>
+                                            <small>Age : {{player.age}}</small>
+                                        </h3>
+                                            <h3> Frequency Rank : {{player.intensityRank}}</h3>
+                                     </div>
+                            
+                                    
+                            
+                                
+                                 <h4> Running Frequency: {{player.runningActivityCount}} Sprints   </h4>
+                                <h4> Weights Intensity Points : {{player.weightActivityCount}} Sets </h4>
+                                    
+                                <strong>{{player.playerName}} records {{player.avgSprints}} Sprints and {{player.avgWeights}} per training session</strong>
+
+                                
+                            </div>
+                            </div>
+                       
+                        </div>
+
+                    </div>
+
+            <!-- <div class="col-md-3 text-center">
                 <div class="thumbnail">
                     <img class="img-responsive" src="http://placehold.it/750x450" alt="">
                     <div class="caption">
@@ -167,7 +206,7 @@
                     </div>
                 </div>
             </div>
-
+ -->
 
         </div>
         <!-- /.row -->
@@ -232,6 +271,7 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/underscore-min.js"></script>
 
 </body>
 
