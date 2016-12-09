@@ -4,14 +4,14 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var session=require('client-sessions');
+var session=require('express-session');
 var http = require('http')
 var index = require('./routes/index');
 var users = require('./routes/users');
 var home = require('./routes/home');
 var mongoStore = require("connect-mongo")(session);
 var mongo = require("mongodb").MongoClient;
-
+var frequency=require('./routes/frequency');
 
 var user = require('./routes/user');
 var home=require('./routes/home');
@@ -64,8 +64,8 @@ app.post('/authorize',home.authorize);
 app.post('/authenticate',user.authenticate);
 app.get('/getPlayers',players.getPlayers);
 app.get('/addPlayer',players.addPlayer);
-
-
+app.get('/getWeeklyRunActivityCount',frequency.getWeeklyRunActivityCount);
+app.get('/addFrequencyData',frequency.addFrequencyData);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
