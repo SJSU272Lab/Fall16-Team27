@@ -70,6 +70,8 @@ app.get('/getAvgDistanceRateData',intensity.getAvgDistanceRateData);
 
 app.get('/addTenacity',tenacity.addTenacity);
 
+app.get('/getRunningTenacityData',tenacity.getRunningTenacityData);
+app.get('/getWeightingTenacityData',tenacity.getWeightingTenacityData);
 
 app.get('/heartrate',home.heartrate);
 

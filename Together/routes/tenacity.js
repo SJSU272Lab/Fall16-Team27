@@ -45,3 +45,118 @@ exports.addTenacity=function(request,response)
     response.send({statusCode:200});
 
 }
+exports.getRunningTenacityData=function(request,response)
+{
+
+
+
+    var currentDate=new Date();
+    var makeDate = new Date();
+    makeDate = new Date(makeDate.setDate(makeDate.getDate() - 7));
+    console.log(Date.parse(currentDate));
+    console.log(Date.parse(makeDate));
+    var resultMap=new HashMap();
+    Tenacity.find({})
+        .where('date').gt(makeDate).lte(currentDate)
+        .where('runningSteps').gt(3000)
+        .populate('playerId')
+        .sort('playerId')
+        .exec(function (err,result)
+        {
+            if(!err)
+            {
+
+                for(var i=0;i<result.length;i++)
+                {
+                    if(resultMap.has(result[i].playerId.playerName))
+                    {
+                        var tempArr=resultMap.get(result[i].playerId.playerName);
+                        var tempObj=
+                            {
+                                date:result[i].date,
+                                runningSteps:result[i].runningSteps
+                            }
+                        tempArr.push(tempObj);
+                        resultMap.remove(result[i].playerId.playerName)
+                        resultMap.set(result[i].playerId.playerName,tempArr);
+                    }
+                    else
+                    {
+                        var tempObj=
+                            {
+                                date:result[i].date,
+                                runningSteps:result[i].runningSteps
+                            }
+                        var tempArr=[];
+                        tempArr.push(tempObj);
+                        resultMap.set(result[i].playerId.playerName,tempArr);
+                    }
+
+                }
+
+                response.send(resultMap);
+            }
+            else
+                response.send({failed:"failed"});
+        });
+
+
+}
+exports.getWeightingTenacityData=function(request,response)
+{
+
+
+
+    var currentDate=new Date();
+    var makeDate = new Date();
+    makeDate = new Date(makeDate.setDate(makeDate.getDate() - 7));
+    console.log(Date.parse(currentDate));
+    console.log(Date.parse(makeDate));
+    var resultMap=new HashMap();
+    Tenacity.find({})
+        .where('date').gt(makeDate).lte(currentDate)
+        .where('weightingSteps').gt(30)
+        .populate('playerId')
+        .sort('playerId')
+        .exec(function (err,result)
+        {
+            if(!err)
+            {
+
+                for(var i=0;i<result.length;i++)
+                {
+                    if(resultMap.has(result[i].playerId.playerName))
+                    {
+                        var tempArr=resultMap.get(result[i].playerId.playerName);
+                        var tempObj=
+                            {
+                                date:result[i].date,
+                                weightingSteps:result[i].weightingSteps
+                            }
+                        tempArr.push(tempObj);
+                        resultMap.remove(result[i].playerId.playerName)
+                        resultMap.set(result[i].playerId.playerName,tempArr);
+                    }
+                    else
+                    {
+                        var tempObj=
+                            {
+                                date:result[i].date,
+                                weightingSteps:result[i].weightingSteps
+                            }
+                        var tempArr=[];
+                        tempArr.push(tempObj);
+                        resultMap.set(result[i].playerId.playerName,tempArr);
+                    }
+
+                }
+
+                response.send(resultMap);
+            }
+            else
+                response.send({failed:"failed"});
+        });
+
+
+}
+
