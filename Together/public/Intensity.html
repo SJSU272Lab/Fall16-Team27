@@ -16,12 +16,15 @@
 
     <!-- Custom CSS -->
     <link href="css/modern-business.css" rel="stylesheet">
+     <link href="css/flip.css" rel="stylesheet">
+ 
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <script src="js/angular.min.js"></script>
     <script src="js/app.js"></script>
     <script src="js/intensity.controller.js"></script>
+    <script src="js/flip.js"></script>
 
    
 
@@ -102,21 +105,36 @@
                 <div class="Player-cards" ng-repeat="player in vm.players | orderBy:'intensityRank'">    
 
             <div class="col-md-4 text-center">
-                <div class="thumbnail">
+            <div class="card effect__click">
+                         
+                <div class="thumbnail" style="background-color:rgb(217,242,217)">
                     <img class="img-responsive" src="{{player.profilePic}}" width=149 height=149 alt="" style="border-radius:50%">
+                    <h3 style="margin-bottom:-13%">{{player.playerName}}</h3><br><br>
+                    <h3> Intensity Rank : {{player.intensityRank}}</h3>
+                    <span class="card__text">
                     <div class="caption">
-                        <h3>{{player.playerName}}<br>
-                            <small>Weight : {{player.weight}}</small>
-                            <small>Height : {{player.height}}</small>
-                            <small>Age : {{player.age}}</small>
+                     <div class="card__front">
+                        <h3>
+                            Weight : {{player.weight}} |
+                            Height : {{player.height}} |
+                            Age : {{player.age}}
                         </h3>
-                        <h3> Intensity Rank : {{player.intensityRank}}</h3>
-                        <h4> Running Intensity Points : {{player.runningIntensityPoints}}  </h4>
-                        <h4> Weights Intensity Points : {{player.weightIntensityPoints}} </h4>
-                        
+                         
+
+                     </div>
+                     </div>
+
+
+                     <div class="card__back" style="margin-top:-35%">
+                       
+                        <h3><span><img src ="./img/run.png" width=10% height=10%> Intensity Points : {{player.runningIntensityPoints}} </span> </h3>
+                        <h3> <span> <img src ="./img/dumbbell.png" width=10% height=10%>Intensity Points : {{player.weightIntensityPoints}}</span></h3>
+                     </div>
+                     </span>
 
                     </div>
                 </div>
+            </div>
             </div>
             </div>
 
