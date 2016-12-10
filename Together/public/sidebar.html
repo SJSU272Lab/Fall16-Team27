@@ -185,10 +185,10 @@
             </div>
             <!-- Content Column -->
             <div class="col-md-1"></div>
-            <div ng-if="weightIntensityLineChartOptions" id="highchart_container" class="col-md-8" ng-if="vm.tab=='fitness'">
+            <div  id="highchart_container" class="col-md-8" ng-if="vm.tab=='fitness'">
                 <h2>Fitness</h2>
                 <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta, et temporibus, facere perferendis veniam beatae non debitis, numquam blanditiis necessitatibus vel mollitia dolorum laudantium, voluptate dolores iure maxime ducimus fugit.</p> -->
-                <hc-chart options="weightIntensityLineChartOptions">Placeholder for generic chart</hc-chart>
+                <hc-chart ng-if="weightIntensityLineChartOptions" options="weightIntensityLineChartOptions">Placeholder for generic chart</hc-chart>
                  <!-- <hc-pie-chart title="Browser usage" data="pieData">Placeholder for pie chart</hc-pie-chart> -->
             </div>
              <div id="highchart_container" class="col-md-8" ng-if="vm.tab=='intensity'">
