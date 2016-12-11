@@ -25,7 +25,9 @@
     <script src="js/app.js"></script>
     <script src="js/intensity.controller.js"></script>
     <script src="js/flip.js"></script>
-
+    <script src="js/highcharts/highcharts.js"></script>
+    <script type="text/javascript" src="js/highcharts/themes/dark-unica.js"></script>
+    <script src="js/chart.controller.js"></script>
    
 
 </head>
@@ -244,29 +246,33 @@
 
         <hr>
 
-        <div class="container">
+        <div class="container" ng-controller="chartController as vm">
         <h1> How Intensely are the players working Out?</h1>
             <div class="row">
                 <div class="col-md-12">
-                    <h2> Running Intensity Zones Line Chart </h2>
+                    <h2> Running Intensity Zones Bar Chart </h2>
+                     <hc-chart ng-if="runningIntensityBarChartOptions" options="runningIntensityBarChartOptions">Running Tenacity Chart </hc-chart>
                 </div>
             </div>
             <hr>
             <div class="row">
                 <div class="col-md-12">
                     <h2> Weights Intensity Zone Line Chart </h2>
+                     <hc-chart ng-if="weightIntensityLineChartOptions" options="weightIntensityLineChartOptions">Weight Intensity Chart</hc-chart>
                 </div>
             </div>
             <hr>
             <div class="row">
                 <div class="col-md-12">
-                <h2> Avg Calorie Burn Rate Bar chart </h2>
+                <h2> Avg Calorie Burn Rate </h2>
+                <hc-chart ng-if="avgCaloriesChart" options="avgCaloriesChart">Running Tenacity Chart </hc-chart>
                 </div>
             </div>
             <hr>
             <div class="row">
                 <div class="col-md-12">
                 <h2> Avg Distance Per Sprint Bar chart </h2>
+                <hc-chart ng-if="avgDistanceChart" options="avgDistanceChart">Running Tenacity Chart </hc-chart>
                 </div>
             </div>
          </div>

@@ -36,6 +36,38 @@ function chartControllerFn($scope,$http) {
         return seriesData;
     }
 
+    var generateSeriesDataForAvgCaloryBurnChart = function(rawData) {
+        var seriesData = [];
+
+        angular.forEach(rawData,function(d) {
+            var singlePlayerData = [];
+
+            angular.forEach(d.data,function(pData) {
+                console.log("pData",pData);
+                singlePlayerData.push(pData.avgCaloriesRate);
+            });
+            seriesData.push({'name':d.name,'data':singlePlayerData});    
+        });
+        console.log("avg",seriesData);
+        return seriesData;
+    }
+
+    var generateSeriesDataForAvgDistanceChart = function(rawData) {
+        var seriesData = [];
+
+        angular.forEach(rawData,function(d) {
+            var singlePlayerData = [];
+
+            angular.forEach(d.data,function(pData) {
+                console.log("pData",pData);
+                singlePlayerData.push(pData.avgDistanceRate);
+            });
+            seriesData.push({'name':d.name,'data':singlePlayerData});    
+        });
+        console.log("avg",seriesData);
+        return seriesData;
+    }
+
     /* $scope.chartOptions = {
                     title: {
                         text: 'Temperature data'
@@ -61,7 +93,7 @@ function chartControllerFn($scope,$http) {
             })
            
 
-            $scope.columnChartOptions = {
+            $scope.runningIntensityBarChartOptions = {
                 chart: {
                     type: 'column'
                 },
@@ -160,23 +192,23 @@ function chartControllerFn($scope,$http) {
     $scope.pieData = [{
                         name: "Microsoft Internet Explorer",
                         y: 56.33
-                    }, {
-                        name: "Chrome",
-                        y: 24.03,
-                        sliced: true,
-                        selected: true
-                    }, {
-                        name: "Firefox",
-                        y: 10.38
-                    }, {
-                        name: "Safari",
-                        y: 4.77
-                    }, {
-                        name: "Opera",
-                        y: 0.91
-                    }, {
-                        name: "Proprietary or Undetectable",
-                        y: 0.2
+                        }, {
+                            name: "Chrome",
+                            y: 24.03,
+                            sliced: true,
+                            selected: true
+                        }, {
+                            name: "Firefox",
+                            y: 10.38
+                        }, {
+                            name: "Safari",
+                            y: 4.77
+                        }, {
+                            name: "Opera",
+                            y: 0.91
+                        }, {
+                            name: "Proprietary or Undetectable",
+                            y: 0.2
     }];
 
     var getWeightIntensityData = function() {
@@ -230,14 +262,121 @@ function chartControllerFn($scope,$http) {
 
     }
     getWeightIntensityData();
+
+    var getAvgCaloriesRateData = function() {
+        $http.get('/getAvgCaloriesRateData').
+        then(function (data) {
+            //vm.intensityData = data.data;
+            var playerNames = [];
+            var generatedSeriesDataForAvgCaloryBurn = generateSeriesDataForAvgCaloryBurnChart(data.data);
+           /* angular.forEach(vm.intensityData.result,function(player) {
+                playerNames.push(player.playerName);
+            })*/
+           
+
+            $scope.avgCaloriesChart = {
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Avg Calorie Burn Rate'
+                },
+                subtitle: {
+                    text: ''
+                },
+                xAxis: {
+                    categories: ["Day 1","Day 2","Day 3","Day 4","Day 5","Day 6","Day 7"],
+                    crosshair: true
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Points'
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                        '<td style="padding:0"><b>{point.y:.1f} points</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series:generatedSeriesDataForAvgCaloryBurn 
+            };  
+     })
+
+    }
+    getAvgCaloriesRateData();
+
+    var getAvgDistanceRateData = function() {
+        $http.get('/getAvgDistanceRateData').
+        then(function (data) {
+            //vm.intensityData = data.data;
+            var playerNames = [];
+            var generatedSeriesDataForAvgDistance = generateSeriesDataForAvgDistanceChart(data.data);
+           /* angular.forEach(vm.intensityData.result,function(player) {
+                playerNames.push(player.playerName);
+            })*/
+           
+
+            $scope.avgDistanceChart = {
+                chart: {
+                    type: 'area'
+                },
+                title: {
+                    text: 'Average Distance Covered per sprint'
+                },
+                subtitle: {
+                    text: ''
+                },
+                xAxis: {
+                    categories: ["Day 1","Day 2","Day 3","Day 4","Day 5","Day 6","Day 7"],
+                    tickmarkPlacement: 'on',
+                    title: {
+                        enabled: false
+                    }
+                },
+                yAxis: {
+                    title: {
+                        text: 'miles'
+                    },
+                    labels: {
+                        /*formatter: function () {
+                            return this.value / 1000;
+                        }*/
+                    }
+                },
+                tooltip: {
+                    split: true,
+                    valueSuffix: ' miles'
+                },
+                plotOptions: {
+                    area: {
+                        stacking: 'normal',
+                        lineColor: '#666666',
+                        lineWidth: 1,
+                        marker: {
+                            lineWidth: 1,
+                            lineColor: '#666666'
+                        }
+                    }
+                },
+                series: generatedSeriesDataForAvgDistance
+            };
+        })  
+     }
+
     
+    getAvgDistanceRateData();
 }
 
 app.controller("chartController",chartControllerFn);
 
 
-function dataServiceFn() {
-	return [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4];
-}
-
-app.factory("dataService",dataServiceFn);
