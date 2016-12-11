@@ -11,8 +11,10 @@ var http = require('http');
 /**
  * Get port from environment and store in Express.
  */
+var cfenv = require('cfenv');
+var appEnv = cfenv.getAppEnv();
 
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(process.env.PORT || process.env.VCAP_APP_PORT || appEnv.port || '3000');
 app.set('port', port);
 
 /**
@@ -24,6 +26,8 @@ var server = http.createServer(app);
 /**
  * Listen on provided port, on all network interfaces.
  */
+
+
 
 server.listen(port);
 server.on('error', onError);
@@ -86,5 +90,5 @@ function onListening() {
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
-  debug('Listening on ' + bind);
+  console.log('Listening on ' + bind);
 }

@@ -116,12 +116,21 @@ app.get('/getPlayerFrequenyData',frequency.getPlayerFrequenyData);
 //get specific player's intensity points
 app.get('/getPlayerIntensityData',intensity.getPlayerIntensityData);
 
-var port = process.env.PORT || '3000';
+
+/*var cfenv = require('cfenv');
+var appEnv = cfenv.getAppEnv();
+
+app.listen(appEnv.port, '0.0.0.0', function() {
+  // print a message when the server starts listening
+  console.log("server starting on " + appEnv.url);
+});
+*/
+/*var port = process.env.PORT || '3000';
 app.set('port', port);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
-});
+});*/
 
 
 // catch 404 and forward to error handler
