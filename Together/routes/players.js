@@ -32,7 +32,13 @@ exports.addPlayer=function(request,response)
     newPlayer.playerName="Apoorv Mehta";
     newPlayer.height=165;
     newPlayer.weight=68;
+    newPlayer.profilePic="http://i.imgur.com/OK9BfQ4.jpg";
     newPlayer.age=24;
+    newPlayer.intensityRank=1;
+    newPlayer.frequencyRank=2;
+    newPlayer.tenacityRank=3;
+
+
     newPlayer.save(function (err,result)
     {
        if(err)
