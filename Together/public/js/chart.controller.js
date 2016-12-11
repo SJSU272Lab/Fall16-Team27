@@ -291,7 +291,7 @@ function chartControllerFn($scope,$http) {
                 yAxis: {
                     min: 0,
                     title: {
-                        text: 'Points'
+                        text: 'Calories'
                     }
                 },
                 tooltip: {
