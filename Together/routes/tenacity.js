@@ -220,6 +220,12 @@ exports.getRunningTenacityDistribution=function(request,response)
                         resultMap.set(result[i].playerId.playerName,tempArr);
                     }
                 }
+
+
+                var veryLowPlayer=[];
+                var lowPlayer=[];
+                var mediumPlayer=[];
+                var highPlayer=[];
                 resultMap.forEach(function(value, key) {
                     console.log(key + " : " + value);
                     var total = 0;
@@ -230,20 +236,34 @@ exports.getRunningTenacityDistribution=function(request,response)
                     //distArr.push({name:key,average:average});
                     if (average <= 2000) {
                         veryLow++;
+                        veryLowPlayer.push(key);
+
                     }
                     else if (average > 2000 && average <= 4000) {
                         low++;
+                        lowPlayer.push(key);
+
                     }
                     else if (average > 4000 && average <= 6000) {
                         medium++;
+                        mediumPlayer.push(key);
+
                     }
                     else if (average > 6000) {
                         high++;
+                        highPlayer.push(key);
+
                     }
 
                 });
 
-                response.send({veryLow:veryLow,low:low,medium:medium,high:high});
+                console.log("veryLowPlayer"+veryLowPlayer);
+                console.log("LowPlayer"+lowPlayer);
+                console.log("mediumPlayer"+mediumPlayer);
+                console.log("highPlayer"+highPlayer);
+
+
+                response.send({veryLow:veryLowPlayer,low:lowPlayer,medium:mediumPlayer,high:highPlayer});
             }
             else
                 response.send({failed:"failed"});
@@ -325,6 +345,10 @@ exports.getWeightingTenacityDistribution=function(request,response)
                        resultMap.set(result[i].playerId.playerName,tempArr);
                     }
                 }
+                var veryLowPlayer=[];
+                var lowPlayer=[];
+                var mediumPlayer=[];
+                var highPlayer=[];
                 resultMap.forEach(function(value, key) {
                         console.log(key + " : " + value);
                         var total = 0;
@@ -334,20 +358,30 @@ exports.getWeightingTenacityDistribution=function(request,response)
                         var average = total / (value.length + 1)
                             if (average <= 20) {
                                 veryLow++;
+                                veryLowPlayer.push(key);
                             }
                         else if (average > 20 && average <= 40) {
                                 low++;
+                                lowPlayer.push(key);
                             }
                         else if (average > 40 && average <= 60) {
                                 medium++;
+                                mediumPlayer.push(key);
                             }
                         else if (average > 60) {
                                 high++;
+                                highPlayer.push(key);
                             }
 
                         });
 
-                    response.send({veryLow:veryLow,low:low,medium:medium,high:high});
+                    console.log("veryLowPlayer"+veryLowPlayer);
+                    console.log("LowPlayer"+lowPlayer);
+                    console.log("mediumPlayer"+mediumPlayer);
+                    console.log("highPlayer"+highPlayer);
+
+
+                    response.send({veryLow:veryLowPlayer,low:lowPlayer,medium:mediumPlayer,high:highPlayer});
             }
             else
                 response.send({failed:"failed"});
