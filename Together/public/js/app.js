@@ -60,9 +60,16 @@ app.service("communication",function() {
         get: function() {
              return window.localStorage.getItem("playerName");
         },
+        getId: function() {
+             return window.localStorage.getItem("playerId");
+        },
+
         set:function(m) {
             window.localStorage.setItem("playerName",m);
-            msg = m;
+            //msg = m;
+        },
+        setId:function(m){
+            window.localStorage.setItem("playerId",m);
         }
     }
 })

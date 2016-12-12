@@ -1,9 +1,211 @@
 var app = angular.module("togetherApp");
 
-function chartControllerFn($scope,$http,communication) {
-	console.log("communication works?",communication.get());
+function playerDetailsControllerFn($scope,$http,communication) {
+	//console.log("communication works?",JSON.parse(communication.get()).playerName);
 	var vm = this;
 	vm.tab='fitness';
+    var playerName = communication.get();
+    var playerId = communication.getId();
+
+    var getPlayerBio = function() {
+        $http.post("/getPlayerDetail",{playerName:playerName}).
+        then(function(data) {
+            if(data.status==200){
+                vm.playerBio = data.data[0];
+            }
+        })
+    }
+    getPlayerBio();
+
+    //console.log(angular.toJson(player));
+    var generateSeriesDataForIntensityChart = function(rawData) {
+        var seriesData = [];
+
+        
+        var singlePlayerData = [];
+
+        angular.forEach(rawData,function(pData) {
+            singlePlayerData.push(pData.points);
+        });
+        seriesData.push({'name':playerName,'data':singlePlayerData});    
+        
+        console.log(seriesData);
+        return seriesData;
+    }
+
+    var getWeightIntensityData = function() {
+        $http.post('/getPlayerIntensityData',{'playerId':playerId}).
+        then(function (data) {
+            vm.weightIntensityData = data.data;
+            var playerNames = [];
+            var generatedWeightSeriesData = generateSeriesDataForIntensityChart(data.data);
+            console.log("generatedWeightSeriesData",generatedWeightSeriesData);
+           /* angular.forEach(vm.intensityData.result,function(player) {
+                playerNames.push(player.playerName);
+            });*/
+
+            $scope.weightIntensityLineChartOptions = {
+                title: {
+                    text: 'Player Intensity Points(Weekly)',
+                    x: -20 //center
+                },
+                subtitle: {
+                    text: '',
+                    x: -20
+                },
+                xAxis: {
+                    categories: ["Day 1","Day 2","Day 3","Day 4","Day 5","Day 6","Day 7"]
+                },
+                yAxis: {
+                    title: {
+                        text: 'Points'
+                    },
+                    plotLines: [{
+                        value: 0,
+                        width: 1,
+                        color: '#808080'
+                    }]
+                },
+                tooltip: {
+                    valueSuffix: 'Points'
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'middle',
+                    borderWidth: 0
+                },
+                series: generatedWeightSeriesData
+            };
+           
+
+              
+     })
+
+    }
+    getWeightIntensityData();
+
+    var getFqIntensityData = function() {
+        $http.post('/getPlayerFrequenyData',{'playerId':playerId}).
+        then(function (data) {
+            vm.weightIntensityData = data.data;
+            var playerNames = [];
+            var generatedWeightSeriesData = generateSeriesDataForIntensityChart(data.data);
+            console.log("generatedWeightSeriesData",generatedWeightSeriesData);
+           /* angular.forEach(vm.intensityData.result,function(player) {
+                playerNames.push(player.playerName);
+            });*/
+
+            $scope.fqLineChartOptions = {
+                title: {
+                    text: 'Player Frequency Points(Weekly)',
+                    x: -20 //center
+                },
+                subtitle: {
+                    text: '',
+                    x: -20
+                },
+                xAxis: {
+                    categories: ["Day 1","Day 2","Day 3","Day 4","Day 5","Day 6","Day 7"]
+                },
+                yAxis: {
+                    title: {
+                        text: 'Points'
+                    },
+                    plotLines: [{
+                        value: 0,
+                        width: 1,
+                        color: '#808080'
+                    }]
+                },
+                plotOptions: {
+                    line: {
+                        dataLabels: {
+                            enabled: true
+                        },
+                        enableMouseTracking: false
+                    }
+                },
+                tooltip: {
+                    valueSuffix: 'Points'
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'middle',
+                    borderWidth: 0
+                },
+                series: generatedWeightSeriesData
+            };
+           
+
+              
+     })
+
+    }
+    getFqIntensityData();
+
+     var getFqTenacityData = function() {
+        $http.post('/getPlayerTenacityData',{'playerId':playerId}).
+        then(function (data) {
+            vm.weightIntensityData = data.data;
+            var playerNames = [];
+            var generatedWeightSeriesData = generateSeriesDataForIntensityChart(data.data);
+            console.log("generatedWeightSeriesData",generatedWeightSeriesData);
+           /* angular.forEach(vm.intensityData.result,function(player) {
+                playerNames.push(player.playerName);
+            });*/
+
+            $scope.tenacityLineChartOptions = {
+                title: {
+                    text: 'Player Frequency Points(Weekly)',
+                    x: -20 //center
+                },
+                subtitle: {
+                    text: '',
+                    x: -20
+                },
+                xAxis: {
+                    categories: ["Day 1","Day 2","Day 3","Day 4","Day 5","Day 6","Day 7"]
+                },
+                yAxis: {
+                    title: {
+                        text: 'Points'
+                    },
+                    plotLines: [{
+                        value: 0,
+                        width: 1,
+                        color: '#808080'
+                    }]
+                },
+                plotOptions: {
+                    line: {
+                        dataLabels: {
+                            enabled: true
+                        },
+                        enableMouseTracking: false
+                    }
+                },
+                tooltip: {
+                    valueSuffix: 'Points'
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'middle',
+                    borderWidth: 0
+                },
+                series: generatedWeightSeriesData
+            };
+           
+
+              
+     })
+
+    }
+    getFqTenacityData();
+
+
 
    /* var generateSeriesDataForIntensityChart = function(rawData) {
         var seriesData = [];
@@ -361,6 +563,6 @@ function chartControllerFn($scope,$http,communication) {
     getAvgDistanceRateData();*/
 }
 
-app.controller("chartController",chartControllerFn);
+app.controller("playerDetailsController",playerDetailsControllerFn);
 
 

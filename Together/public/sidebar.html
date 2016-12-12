@@ -30,7 +30,7 @@
     <script src="js/angular.min.js"></script>
     <script src="js/app.js"></script>
     <script src="js/highcharts/highcharts.js"></script>
-    <script src="js/chart.controller.js"></script>
+    <!-- <script src="js/chart.controller.js"></script> -->
     <script src="js/playerDetails.controller.js" type="text/javascript"></script>
     <script type="text/javascript" src="js/highcharts/themes/dark-unica.js"></script>
     <script src="js/jquery.js"></script>
@@ -51,7 +51,7 @@
 
 </head>
 
-<body ng-app="togetherApp"  ng-controller="chartController as vm">
+<body ng-app="togetherApp"  ng-controller="playerDetailsController as vm">
 
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -161,17 +161,17 @@
         <div class="row">
 
             <div class="col-md-4">
-                <img class="img-responsive" src="http://placehold.it/300x330" alt="">
+                <img class="img-responsive" src="{{vm.playerBio.profilePic}}" alt="">
             </div>
 
             <div class="col-md-6">
                 <h2>Player Details</h2>
                 <hr style="width:700px; border-top: 3px solid orange;">
                 <br>
-                <p><b>Name : </b>Player Name</p>
-                <p><b>Name : </b>Player Name</p>
-                <p><b>Name : </b>Player Name</p>
-                <p><b>Name : </b>Player Name</p>
+                <p><b>Name : </b>{{vm.playerBio.playerName}}</p>
+                <p><b>Weight : </b>{{vm.playerBio.weight}}</p>
+                <p><b>Height : </b>{{vm.playerBio.height}}</p>
+                <p><b>Age : </b>{{vm.playerBio.age}}</p>
 
 
             </div>
@@ -201,16 +201,16 @@
                 <hc-chart ng-if="weightIntensityLineChartOptions" options="weightIntensityLineChartOptions">Placeholder for generic chart</hc-chart>
                  <!-- <hc-pie-chart title="Browser usage" data="pieData">Placeholder for pie chart</hc-pie-chart> -->
             </div>
-             <div id="highchart_container" class="col-md-8" ng-if="vm.tab=='intensity' && columnChartOptionsSinglePlayer">
+             <div id="highchart_container" class="col-md-8" ng-if="vm.tab=='intensity' && fqLineChartOptions">
                 <h2>Intensity</h2>
                 <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta, et temporibus, facere perferendis veniam beatae non debitis, numquam blanditiis necessitatibus vel mollitia dolorum laudantium, voluptate dolores iure maxime ducimus fugit.</p> -->
-                 <hc-chart options="columnChartOptionsSinglePlayer">Placeholder for generic chart</hc-chart> 
+                 <hc-chart options="fqLineChartOptions">Placeholder for generic chart</hc-chart> 
                  <!-- <hc-pie-chart title="Browser usage" data="pieData">Placeholder for pie chart</hc-pie-chart> -->
             </div>
-             <div id="highchart_container" class="col-md-8" ng-if="vm.tab=='tenacity' && columnChartOptions">
+             <div id="highchart_container" class="col-md-8" ng-if="vm.tab=='tenacity' && tenacityLineChartOptions">
                 <h2>Tenacity</h2>
                 <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta, et temporibus, facere perferendis veniam beatae non debitis, numquam blanditiis necessitatibus vel mollitia dolorum laudantium, voluptate dolores iure maxime ducimus fugit.</p> -->
-                <hc-chart options="columnChartOptions">Placeholder for generic chart</hc-chart>
+                <hc-chart options="tenacityLineChartOptions">Placeholder for generic chart</hc-chart>
                  <!-- <hc-pie-chart title="Browser usage" data="pieData">Placeholder for pie chart</hc-pie-chart> -->
             </div>
              <div id="highchart_container" class="col-md-8" ng-if="vm.tab=='effectiveness' && pieData">
