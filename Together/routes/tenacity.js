@@ -10,7 +10,7 @@ var HashMap=require('hashmap');
 exports.addTenacity=function(request,response)
 {
     var makeDate = new Date();
-    makeDate = new Date(makeDate.setDate(makeDate.getDate() - 7));
+    makeDate = new Date(makeDate.setDate(makeDate.getDate() - 15));
     var playerId=[];
     playerId.push('5849d2a526a28b14c836b2dd');
     playerId.push('5849d28bbbeb673650d179fa');
@@ -52,7 +52,7 @@ exports.getRunningTenacityData=function(request,response)
 
     var currentDate=new Date();
     var makeDate = new Date();
-    makeDate = new Date(makeDate.setDate(makeDate.getDate() - 7));
+    makeDate = new Date(makeDate.setDate(makeDate.getDate() - 15));
     console.log(Date.parse(currentDate));
     console.log(Date.parse(makeDate));
     var resultMap=new HashMap();
@@ -117,7 +117,7 @@ exports.getWeightingTenacityData=function(request,response)
 
     var currentDate=new Date();
     var makeDate = new Date();
-    makeDate = new Date(makeDate.setDate(makeDate.getDate() - 7));
+    makeDate = new Date(makeDate.setDate(makeDate.getDate() - 15));
     console.log(Date.parse(currentDate));
     console.log(Date.parse(makeDate));
     var resultMap=new HashMap();
@@ -182,7 +182,7 @@ exports.getRunningTenacityDistribution=function(request,response)
 {
     var currentDate=new Date();
     var makeDate = new Date();
-    makeDate = new Date(makeDate.setDate(makeDate.getDate() - 7));
+    makeDate = new Date(makeDate.setDate(makeDate.getDate() - 15));
     console.log(Date.parse(currentDate));
     console.log(Date.parse(makeDate));
     var resultMap=new HashMap();
@@ -276,7 +276,7 @@ exports.getPlayerTenacityData=function (request,response)
 {
     var currentDate=new Date();
     var makeDate = new Date();
-    makeDate = new Date(makeDate.setDate(makeDate.getDate() - 7));
+    makeDate = new Date(makeDate.setDate(makeDate.getDate() - 15));
     console.log(Date.parse(currentDate));
     console.log(Date.parse(makeDate));
     var resultArr=[];
@@ -307,7 +307,7 @@ exports.getWeightingTenacityDistribution=function(request,response)
     {
         var currentDate=new Date();
     var makeDate = new Date();
-    makeDate = new Date(makeDate.setDate(makeDate.getDate() - 7));
+    makeDate = new Date(makeDate.setDate(makeDate.getDate() - 15));
     console.log(Date.parse(currentDate));
     console.log(Date.parse(makeDate));
    var resultMap=new HashMap();
