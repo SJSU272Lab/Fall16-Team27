@@ -42,7 +42,7 @@ exports.getWeightingIntensityData=function(request,response)
     var makeDate = new Date();
     var resultArray=[];
 
-    makeDate = new Date(makeDate.setDate(makeDate.getDate() - 7));
+    makeDate = new Date(makeDate.setDate(makeDate.getDate() - 15));
     console.log(Date.parse(currentDate));
     console.log(Date.parse(makeDate));
     var resultMap=new HashMap();
@@ -108,7 +108,7 @@ exports.getRunningIntensityData=function(request,response)
 
     var currentDate=new Date();
     var makeDate = new Date();
-    makeDate = new Date(makeDate.setDate(makeDate.getDate() - 7));
+    makeDate = new Date(makeDate.setDate(makeDate.getDate() - 15));
     console.log(Date.parse(currentDate));
     console.log(Date.parse(makeDate));
     var resultMap=new HashMap();
@@ -176,7 +176,7 @@ exports.getAvgCaloriesRateData=function(request,response)
 
     var currentDate=new Date();
     var makeDate = new Date();
-    makeDate = new Date(makeDate.setDate(makeDate.getDate() - 7));
+    makeDate = new Date(makeDate.setDate(makeDate.getDate() - 15));
     console.log(Date.parse(currentDate));
     console.log(Date.parse(makeDate));
     var resultMap=new HashMap();
@@ -244,7 +244,7 @@ exports.getAvgDistanceRateData=function(request,response)
 
     var currentDate=new Date();
     var makeDate = new Date();
-    makeDate = new Date(makeDate.setDate(makeDate.getDate() - 7));
+    makeDate = new Date(makeDate.setDate(makeDate.getDate() - 15));
     console.log(Date.parse(currentDate));
     console.log(Date.parse(makeDate));
     var resultMap=new HashMap();
@@ -310,7 +310,7 @@ exports.getPlayerIntensityData=function (request,response)
 {
     var currentDate=new Date();
     var makeDate = new Date();
-    makeDate = new Date(makeDate.setDate(makeDate.getDate() - 7));
+    makeDate = new Date(makeDate.setDate(makeDate.getDate() - 15));
     console.log(Date.parse(currentDate));
     console.log(Date.parse(makeDate));
     var resultArr=[];
