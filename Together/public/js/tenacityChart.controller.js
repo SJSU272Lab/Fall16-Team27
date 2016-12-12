@@ -12,7 +12,7 @@ function chartControllerFn($scope,$http) {
             var singlePlayerData = [];
 
             angular.forEach(d.data,function(pData) {
-                singlePlayerData.push(pData.runningIntensityPoint);
+                singlePlayerData.push(pData.runningSteps);
             });
             seriesData.push({'name':d.name,'data':singlePlayerData});    
         });
@@ -28,7 +28,7 @@ function chartControllerFn($scope,$http) {
             var singlePlayerData = [];
 
             angular.forEach(d.data,function(pData) {
-                singlePlayerData.push(pData.weightingIntensityPoint);
+                singlePlayerData.push(pData.weightingSteps);
             });
             seriesData.push({'name':d.name,'data':singlePlayerData});    
         });
@@ -69,7 +69,7 @@ function chartControllerFn($scope,$http) {
     }
 
 	var getIntensityData = function() {
-        $http.get('/getRunningIntensityData').
+        $http.get('/getRunningTenacityData').
         then(function (data) {
             vm.intensityData = data.data;
             var playerNames = [];
@@ -84,7 +84,7 @@ function chartControllerFn($scope,$http) {
                     type: 'column'
                 },
                 title: {
-                    text: 'Running Intensity Points'
+                    text: 'Running Tenacity Points'
                 },
                 subtitle: {
                     text: ''
@@ -198,7 +198,7 @@ function chartControllerFn($scope,$http) {
     }];
 
     var getWeightIntensityData = function() {
-        $http.get('/getWeightingIntensityData').
+        $http.get('/getWeightingTenacityData').
         then(function (data) {
             vm.weightIntensityData = data.data;
             var playerNames = [];
@@ -210,7 +210,7 @@ function chartControllerFn($scope,$http) {
 
             $scope.weightIntensityLineChartOptions = {
                 title: {
-                    text: 'Weight Intensity Points(Weekly)',
+                    text: 'Weight Tenacity Points(Weekly)',
                     x: -20 //center
                 },
                 subtitle: {
@@ -299,7 +299,7 @@ function chartControllerFn($scope,$http) {
      })
 
     }
-    getAvgCaloriesRateData();
+  //  getAvgCaloriesRateData();
 
     var getAvgDistanceRateData = function() {
         $http.get('/getAvgDistanceRateData').
@@ -360,9 +360,9 @@ function chartControllerFn($scope,$http) {
      }
 
     
-    getAvgDistanceRateData();
+   // getAvgDistanceRateData();
 }
 
-app.controller("chartController",chartControllerFn);
+app.controller("tenacityChartController",chartControllerFn);
 
 

@@ -23,6 +23,9 @@
     <script src="js/angular.min.js"></script>
     <script src="js/app.js"></script>
     <script src="js/tenacity.controller.js"></script>
+    <script src="js/highcharts/highcharts.js"></script>
+    <script type="text/javascript" src="js/highcharts/themes/dark-unica.js"></script>
+    <script src="js/tenacityChart.controller.js"></script>
    
 
 </head>
@@ -239,12 +242,13 @@
 
         <hr>
 
-        <div class="container">
+        <div class="container" ng-controller="tenacityChartController as vm">
         <h1> How Tenacious are the players?</h1>
             <div class="row">
                 <div class="col-md-12">
                     <h2> Players Running Tenacity </h2>
                     <h3> A graph showing Each player's No of days where no. of Running steps more than 5000 </h3>
+                    <hc-chart ng-if="runningIntensityBarChartOptions" options="runningIntensityBarChartOptions">Running Tenacity Chart </hc-chart>
                 </div>
             </div>
             <hr>
@@ -252,6 +256,7 @@
                 <div class="col-md-12">
                     <h2> Players Weights Tenacity </h2>
                     <h3> A graph showing Each player's No of days where no. of steps more than 5000 </h3>
+                     <hc-chart ng-if="weightIntensityLineChartOptions" options="weightIntensityLineChartOptions">Weight Intensity Chart</hc-chart>
                 </div>
             </div>
             <hr>
