@@ -178,7 +178,7 @@ exports.getPlayerFrequenyData=function (request,response)
     console.log(Date.parse(currentDate));
     console.log(Date.parse(makeDate));
     var resultArr=[];
-    var playerId=request.param("playerId");
+    var playerId=request.body("playerId");
     Frequency.find({'playerId':mongoose.Types.ObjectId(playerId)})
         .where('date').gt(makeDate).lte(currentDate)
         .populate('playerId')
