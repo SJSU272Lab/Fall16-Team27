@@ -24,9 +24,9 @@ exports.getPlayers=function(request,response)
     });
 }
 
-exports.getPlayerDetail = function (request,response)
+exports.getPlayerDetail = function (req,res)
 {
-  var playerName = req.body("playerName");
+  var playerName = req.body.playerName;
   console.log("in player detail api");
 
     Player.find({'playerName':playerName},function(err,players){
@@ -34,7 +34,7 @@ exports.getPlayerDetail = function (request,response)
           if(err)
             console.log(err);
           console.log(players);
-          response.send(players);
+          res.send(players);
     })
 }
 
