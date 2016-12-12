@@ -46,7 +46,7 @@ function playerDetailsControllerFn($scope,$http,communication) {
 
             $scope.weightIntensityLineChartOptions = {
                 title: {
-                    text: 'Player Intensity Points(Weekly)',
+                    text: 'Player Frequency Points(Weekly)',
                     x: -20 //center
                 },
                 subtitle: {
@@ -98,7 +98,7 @@ function playerDetailsControllerFn($scope,$http,communication) {
 
             $scope.fqLineChartOptions = {
                 title: {
-                    text: 'Player Frequency Points(Weekly)',
+                    text: 'Player Intensity Points(Weekly)',
                     x: -20 //center
                 },
                 subtitle: {
@@ -158,7 +158,7 @@ function playerDetailsControllerFn($scope,$http,communication) {
 
             $scope.tenacityLineChartOptions = {
                 title: {
-                    text: 'Player Frequency Points(Weekly)',
+                    text: 'Player Tenacity Points(Weekly)',
                     x: -20 //center
                 },
                 subtitle: {
