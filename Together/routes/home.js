@@ -126,7 +126,122 @@ exports.intradayHeartRate=function (request,response)
         response.send({result:results[0]});
     });
 
+}
+
+setInterval(function ()
+{
+    Player.find({},function (err,players)
+    {
+        if(err)
+            console.log(err);
+        else
+        {
+            for(var i=0;i<players.length;i++)
+            {
+                client.get(players[i].encodedId+"/friends.json", request.session.access_token).then(function (results)
+                {
+                    console.log(results[0]);
+                    addPlayerIntensityData(players[i]._id);
+                    addPlayerFrequencyData(players[i]._id);
+                    addPlayerTenacityData(players[i]._id);
+
+                });
+            }
+        }
+    });
+
+}, 1000 * 60 * 60 * 24);
 
 
+function addPlayerIntensityData(playerId)
+{
 
+    client.get(players[i].encodedId+"/activities/95001/date/today/1d.json", request.session.access_token).then(function (result)
+    {
+        var newIntensityData=new Intensity();
+        newIntensityData.avgDistanceRate=result.averageDistance;
+        newIntensityData.avgCaloriesRate=result.calories/result.noActivities;
+        newIntensityData.runningIntensityPoint=(result.averageDistance/result.calories)*5;
+        newIntensityData.runningIntensityPoint=(result.weightSteps/result.calories)*5;
+        newIntensityData.playerId=playerId;
+        newIntensityData.date=Date.now();
+        newIntensityData.save(function (err,result)
+        {
+            if(!err)
+                console.log("Player intensity added for player:"+playerId);
+        });
+    });
+
+}
+
+function addPlayerFrequencyData(playerId)
+{
+    client.get(players[i].encodedId+"/activities/date/today/1d.json", request.session.access_token).then(function (result)
+    {
+        var newFrequencyData=new Frequency();
+        newFrequencyData.noOfRunActivity=result.activities.runs.length;
+        newFrequencyData.noOfWeightActivity=result.activities.weight.length;
+        if(result.activities.runs=1)
+            newFrequencyData.runningFrequencyPoint=10;
+        if(result.activities.runs=2)
+            newFrequencyData.runningFrequencyPoint=15;
+        if(result.activities.runs=3)
+            newFrequencyData.runningFrequencyPoint=20;
+        if(result.activities.runs=4)
+            newFrequencyData.runningFrequencyPoint=25;
+        if(result.activities.runs>=5)
+            newFrequencyData.runningFrequencyPoint=30;
+
+        if(result.activities.weight=1)
+            newFrequencyData.weightingFrequencyPoint=10;
+        if(result.activities.weight=2)
+            newFrequencyData.weightingFrequencyPoint=15;
+        if(result.activities.weight=3)
+            newFrequencyData.weightingFrequencyPoint=20;
+        if(result.activities.weight=4)
+            newFrequencyData.weightingFrequencyPoint=25;
+        if(result.activities.weight>=5)
+            newFrequencyData.weightingFrequencyPoint=30;
+
+        newFrequencyData.playerId=playerId;
+        newFrequencyData.date=Date.now();
+        newFrequencyData.save(function (err,result)
+        {
+            if(!err)
+                console.log("Player frequency added for player:"+playerId);
+        });
+    });
+
+}
+
+function addPlayerTenacityData(playerId)
+{
+    client.get(players[i].encodedId+"/activities/95001/date/today/1d.json", request.session.access_token).then(function (result)
+    {
+        var newTenacityData=new Tenacity();
+        newTenacityData.runningSteps=result.runningSteps;
+        newTenacityData.weightingSteps=result.weightSteps;
+        if(result.weightSteps<=100)
+            newTenacityData.weightingTenacityPoint=5;
+        if(result.weightSteps>100&&result.weightSteps<200)
+            newTenacityData.weightingTenacityPoint=10;
+        if(result.weightSteps>200&&result.weightSteps<300)
+            newTenacityData.weightingTenacityPoint=15;
+        if(result.weightSteps>300&&result.weightSteps<400)
+            newTenacityData.weightingTenacityPoint=20;
+        if(result.weightSteps>400)
+            newTenacityData.weightingTenacityPoint=25;
+
+        if(result.runningSteps<=3000)
+            newTenacityData.runningTenacityPoint=5;
+        if(result.runningSteps>3000&&result.runningSteps<4500)
+            newTenacityData.runningTenacityPoint=10;
+        if(result.runningSteps>4500&&result.runningSteps<6000)
+            newTenacityData.runningTenacityPoint=15;
+        if(result.runningSteps>6000&&result.runningSteps<7500)
+            newTenacityData.runningTenacityPoint=20;
+        if(result.runningSteps>7500)
+            newTenacityData.runningTenacityPoint=25;
+
+    });
 }

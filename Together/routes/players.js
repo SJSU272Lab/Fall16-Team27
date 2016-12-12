@@ -42,27 +42,27 @@ exports.getPlayerDetail = function (req,res)
 exports.addPlayer=function(request,response)
 {
     var newPlayer=new Player();
-    newPlayer.playerName="Apoorv Mehta";
-    newPlayer.height=165;
-    newPlayer.weight=68;
-    newPlayer.profilePic="http://i.imgur.com/OK9BfQ4.jpg";
-    newPlayer.age=24;
-    newPlayer.intensityRank=1;
-    newPlayer.frequencyRank=2;
-    newPlayer.tenacityRank=3;
+    newPlayer.playerName=request.params("name");
+    newPlayer.height=request.params("height");
+    newPlayer.weight=request.params("weight");
+    newPlayer.profilePic=request.params("imgUrl");
+    newPlayer.age=request.params("age");
+    //newPlayer.intensityRank=;
+    //newPlayer.frequencyRank=;
+    //newPlayer.tenacityRank=;
 
 
     newPlayer.save(function (err,result)
     {
-       if(err)
-       {
-           console.log(err);
-           response.send({statusCode:401});
-       }
+        if(err)
+        {
+            console.log(err);
+            response.send({statusCode:401});
+        }
         else
-       {
-           console.log(result);
-           response.send({statusCode:200,result:result});
-       }
+        {
+            console.log(result);
+            response.send({statusCode:200,result:result});
+        }
     });
 }
