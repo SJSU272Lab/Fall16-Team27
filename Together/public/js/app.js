@@ -39,9 +39,7 @@ app.directive('hcPieChart', function () {
                         }
                     }
                 },
-                series: [{
-                    data: scope.data
-                }],
+                series: scope.data,
                 responsive:{
                 	rules:[{
                 		condition: {
