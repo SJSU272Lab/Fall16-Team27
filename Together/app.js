@@ -75,6 +75,8 @@ app.get('/getPlayers',players.getPlayers);
 //adding data in player collection
 app.get('/addPlayer',players.addPlayer);
 
+app.post('/getPlayerDetail',players.getPlayerDetail);
+
 
 //adding data in intensity collection
 app.get('/addIntensity',intensity.addIntensity);
@@ -110,11 +112,11 @@ app.get('/getWeeklyWeightActivityCount',frequency.getWeeklyWeightActivityCount);
 app.get('/addFrequencyData',frequency.addFrequencyData);
 
 //get specific player's tenacity points
-app.get('/getPlayerTenacityData',tenacity.getPlayerTenacityData);
+app.post('/getPlayerTenacityData',tenacity.getPlayerTenacityData);
 //get specific player's frequency points
-app.get('/getPlayerFrequenyData',frequency.getPlayerFrequenyData);
+app.post('/getPlayerFrequenyData',frequency.getPlayerFrequenyData);
 //get specific player's intensity points
-app.get('/getPlayerIntensityData',intensity.getPlayerIntensityData);
+app.post('/getPlayerIntensityData',intensity.getPlayerIntensityData);
 
 
 /*var cfenv = require('cfenv');

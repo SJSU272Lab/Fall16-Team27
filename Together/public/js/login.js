@@ -9,7 +9,7 @@ loginApp.controller("loginController",function($scope,$http)
 
 	$scope.authenticate = function(){
 
-		alert("login called");
+		//alert("login called");
 		console.log("login method call");
 
 		console.log($scope.username,$scope.password);
