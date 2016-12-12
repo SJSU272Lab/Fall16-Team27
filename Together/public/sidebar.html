@@ -31,7 +31,16 @@
     <script src="js/app.js"></script>
     <script src="js/highcharts/highcharts.js"></script>
     <script src="js/chart.controller.js"></script>
+    <script type="text/javascript" src="js/highcharts/themes/dark-unica.js"></script>
+    <script src="js/jquery.js"></script>
 
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+    
+    
+   
+    
+   
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -185,25 +194,25 @@
             </div>
             <!-- Content Column -->
             <div class="col-md-1"></div>
-            <div  id="highchart_container" class="col-md-8" ng-if="vm.tab=='fitness'">
+            <div  id="highchart_container" class="col-md-8" ng-if="vm.tab=='fitness' && weightIntensityLineChartOptions">
                 <h2>Fitness</h2>
                 <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta, et temporibus, facere perferendis veniam beatae non debitis, numquam blanditiis necessitatibus vel mollitia dolorum laudantium, voluptate dolores iure maxime ducimus fugit.</p> -->
                 <hc-chart ng-if="weightIntensityLineChartOptions" options="weightIntensityLineChartOptions">Placeholder for generic chart</hc-chart>
                  <!-- <hc-pie-chart title="Browser usage" data="pieData">Placeholder for pie chart</hc-pie-chart> -->
             </div>
-             <div id="highchart_container" class="col-md-8" ng-if="vm.tab=='intensity'">
+             <div id="highchart_container" class="col-md-8" ng-if="vm.tab=='intensity' && columnChartOptionsSinglePlayer">
                 <h2>Intensity</h2>
                 <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta, et temporibus, facere perferendis veniam beatae non debitis, numquam blanditiis necessitatibus vel mollitia dolorum laudantium, voluptate dolores iure maxime ducimus fugit.</p> -->
                  <hc-chart options="columnChartOptionsSinglePlayer">Placeholder for generic chart</hc-chart> 
                  <!-- <hc-pie-chart title="Browser usage" data="pieData">Placeholder for pie chart</hc-pie-chart> -->
             </div>
-             <div id="highchart_container" class="col-md-8" ng-if="vm.tab=='tenacity'">
+             <div id="highchart_container" class="col-md-8" ng-if="vm.tab=='tenacity' && columnChartOptions">
                 <h2>Tenacity</h2>
                 <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta, et temporibus, facere perferendis veniam beatae non debitis, numquam blanditiis necessitatibus vel mollitia dolorum laudantium, voluptate dolores iure maxime ducimus fugit.</p> -->
                 <hc-chart options="columnChartOptions">Placeholder for generic chart</hc-chart>
                  <!-- <hc-pie-chart title="Browser usage" data="pieData">Placeholder for pie chart</hc-pie-chart> -->
             </div>
-             <div id="highchart_container" class="col-md-8" ng-if="vm.tab=='effectiveness'">
+             <div id="highchart_container" class="col-md-8" ng-if="vm.tab=='effectiveness' && pieData">
                 <h2>Effectiveness</h2>
                 <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta, et temporibus, facere perferendis veniam beatae non debitis, numquam blanditiis necessitatibus vel mollitia dolorum laudantium, voluptate dolores iure maxime ducimus fugit.</p> -->
                 <!-- <hc-chart options="chartOptions">Placeholder for generic chart</hc-chart> -->
@@ -227,15 +236,7 @@
     <!-- /.container -->
 
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
     
-    
-    <script src="js/highcharts/highcharts.js"></script>
-    <script type="text/javascript" src="js/highcharts/themes/dark-unica.js"></script>
-    <script src="js/chart.controller.js"></script>
 
 </body>
 
