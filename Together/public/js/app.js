@@ -52,3 +52,17 @@ app.directive('hcPieChart', function () {
         }
     };
 })
+
+
+app.service("communication",function() {
+    var playerName;
+    return{
+        get: function() {
+             return window.localStorage.getItem("playerName");
+        },
+        set:function(m) {
+            window.localStorage.setItem("playerName",m);
+            msg = m;
+        }
+    }
+})

@@ -5,7 +5,7 @@ function chartControllerFn($scope,$http,communication) {
 	var vm = this;
 	vm.tab='fitness';
 
-    var generateSeriesDataForIntensityChart = function(rawData) {
+   /* var generateSeriesDataForIntensityChart = function(rawData) {
         var seriesData = [];
 
         angular.forEach(rawData,function(d) {
@@ -206,7 +206,7 @@ function chartControllerFn($scope,$http,communication) {
             console.log("generatedWeightSeriesData",generatedWeightSeriesData);
            /* angular.forEach(vm.intensityData.result,function(player) {
                 playerNames.push(player.playerName);
-            });*/
+            });
 
             $scope.weightIntensityLineChartOptions = {
                 title: {
@@ -257,7 +257,7 @@ function chartControllerFn($scope,$http,communication) {
             var generatedSeriesDataForAvgCaloryBurn = generateSeriesDataForAvgCaloryBurnChart(data.data);
            /* angular.forEach(vm.intensityData.result,function(player) {
                 playerNames.push(player.playerName);
-            })*/
+            })
            
 
             $scope.avgCaloriesChart = {
@@ -309,7 +309,7 @@ function chartControllerFn($scope,$http,communication) {
             var generatedSeriesDataForAvgDistance = generateSeriesDataForAvgDistanceChart(data.data);
            /* angular.forEach(vm.intensityData.result,function(player) {
                 playerNames.push(player.playerName);
-            })*/
+            })
            
 
             $scope.avgDistanceChart = {
@@ -334,9 +334,7 @@ function chartControllerFn($scope,$http,communication) {
                         text: 'miles'
                     },
                     labels: {
-                        /*formatter: function () {
-                            return this.value / 1000;
-                        }*/
+                       
                     }
                 },
                 tooltip: {
@@ -360,7 +358,7 @@ function chartControllerFn($scope,$http,communication) {
      }
 
     
-    getAvgDistanceRateData();
+    getAvgDistanceRateData();*/
 }
 
 app.controller("chartController",chartControllerFn);

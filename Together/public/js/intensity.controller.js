@@ -1,7 +1,10 @@
 var app = angular.module("togetherApp");
 
-function intensityControllerFn($scope,$http) {
-	
+function intensityControllerFn($scope,$http,communication) {
+	$scope.testTraverse = function(obj) {
+		communication.set("TRAVERSE!");
+		window.location.assign("/sidebar.html");
+	}
 	var vm = this;
 
 	console.log("Intensity Home controller loaded");
