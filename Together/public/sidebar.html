@@ -139,16 +139,17 @@
             </div>
             <!-- Content Column -->
             <div class="col-md-1"></div>
-            <div  id="highchart_container" class="col-md-8" ng-if="vm.tab=='fitness' && weightIntensityLineChartOptions">
+            <div  id="highchart_container" class="col-md-8" ng-if="vm.tab=='fitness' && fqLineChartOptions">
                 <h2>Frequency</h2>
                 <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta, et temporibus, facere perferendis veniam beatae non debitis, numquam blanditiis necessitatibus vel mollitia dolorum laudantium, voluptate dolores iure maxime ducimus fugit.</p> -->
-                <hc-chart ng-if="weightIntensityLineChartOptions" options="weightIntensityLineChartOptions">Placeholder for generic chart</hc-chart>
+                <hc-chart options="fqLineChartOptions">Placeholder for generic chart</hc-chart> 
+                
                  <!-- <hc-pie-chart title="Browser usage" data="pieData">Placeholder for pie chart</hc-pie-chart> -->
             </div>
-             <div id="highchart_container" class="col-md-8" ng-if="vm.tab=='intensity' && fqLineChartOptions">
+             <div id="highchart_container" class="col-md-8" ng-if="vm.tab=='intensity' && weightIntensityLineChartOptions ">
                 <h2>Intensity</h2>
                 <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta, et temporibus, facere perferendis veniam beatae non debitis, numquam blanditiis necessitatibus vel mollitia dolorum laudantium, voluptate dolores iure maxime ducimus fugit.</p> -->
-                 <hc-chart options="fqLineChartOptions">Placeholder for generic chart</hc-chart> 
+                 <hc-chart ng-if="weightIntensityLineChartOptions" options="weightIntensityLineChartOptions">Placeholder for generic chart</hc-chart>
                  <!-- <hc-pie-chart title="Browser usage" data="pieData">Placeholder for pie chart</hc-pie-chart> -->
             </div>
              <div id="highchart_container" class="col-md-8" ng-if="vm.tab=='tenacity' && tenacityLineChartOptions">

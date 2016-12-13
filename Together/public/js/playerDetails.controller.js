@@ -33,6 +33,21 @@ function playerDetailsControllerFn($scope,$http,communication) {
         return seriesData;
     }
 
+    var generateSeriesDataForFqChart = function(rawData) {
+        var seriesData = [];
+
+        
+        var singlePlayerData = [];
+
+        angular.forEach(rawData,function(pData) {
+            singlePlayerData.push(pData.points);
+        });
+        seriesData.push({'name':playerName,'data':singlePlayerData});    
+        
+        console.log(seriesData);
+        return seriesData;
+    }
+
     var getWeightIntensityData = function() {
         $http.post('/getPlayerIntensityData',{'playerId':playerId}).
         then(function (data) {
@@ -46,7 +61,7 @@ function playerDetailsControllerFn($scope,$http,communication) {
 
             $scope.weightIntensityLineChartOptions = {
                 title: {
-                    text: 'Player Frequency Points(Weekly)',
+                    text: 'Player Intensity Points(Weekly) ',
                     x: -20 //center
                 },
                 subtitle: {
@@ -90,7 +105,7 @@ function playerDetailsControllerFn($scope,$http,communication) {
         then(function (data) {
             vm.weightIntensityData = data.data;
             var playerNames = [];
-            var generatedWeightSeriesData = generateSeriesDataForIntensityChart(data.data);
+            var generatedWeightSeriesData = generateSeriesDataForFqChart(data.data);
             console.log("generatedWeightSeriesData",generatedWeightSeriesData);
            /* angular.forEach(vm.intensityData.result,function(player) {
                 playerNames.push(player.playerName);
@@ -98,7 +113,7 @@ function playerDetailsControllerFn($scope,$http,communication) {
 
             $scope.fqLineChartOptions = {
                 title: {
-                    text: 'Player Intensity Points(Weekly)',
+                    text: 'Player Frequency Points(Weekly)',
                     x: -20 //center
                 },
                 subtitle: {
