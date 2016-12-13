@@ -17,7 +17,7 @@ function coachHomeControllerFn($scope,$http,communication) {
 	vm.goToDetailsPage = function(player) {
 		communication.set(player.playerName);
 		communication.setId(player._id);
-		window.location.assign("/sidebar.html");
+		window.location.assign("/playerDetails.html");
 	}
 
 }
