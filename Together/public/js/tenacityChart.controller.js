@@ -84,7 +84,7 @@ function chartControllerFn($scope,$http) {
                     type: 'column'
                 },
                 title: {
-                    text: 'Running Tenacity Points'
+                    text: 'Running Tenacity Steps'
                 },
                 subtitle: {
                     text: ''
@@ -96,13 +96,13 @@ function chartControllerFn($scope,$http) {
                 yAxis: {
                     min: 0,
                     title: {
-                        text: 'Points'
+                        text: 'Steps'
                     }
                 },
                 tooltip: {
                     headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
                     pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                        '<td style="padding:0"><b>{point.y:.1f} points</b></td></tr>',
+                        '<td style="padding:0"><b>{point.y:.1f} Steps</b></td></tr>',
                     footerFormat: '</table>',
                     shared: true,
                     useHTML: true
@@ -210,7 +210,7 @@ function chartControllerFn($scope,$http) {
 
             $scope.weightIntensityLineChartOptions = {
                 title: {
-                    text: 'Weight Tenacity Points(Weekly)',
+                    text: 'Weight Tenacity Steps(Weekly)',
                     x: -20 //center
                 },
                 subtitle: {
@@ -222,7 +222,7 @@ function chartControllerFn($scope,$http) {
                 },
                 yAxis: {
                     title: {
-                        text: 'Points'
+                        text: 'Steps'
                     },
                     plotLines: [{
                         value: 0,
@@ -231,7 +231,7 @@ function chartControllerFn($scope,$http) {
                     }]
                 },
                 tooltip: {
-                    valueSuffix: 'Points'
+                    valueSuffix: 'Steps'
                 },
                 legend: {
                     layout: 'vertical',
