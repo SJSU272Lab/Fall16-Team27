@@ -5,6 +5,9 @@ Project Abstract
 
 Together
 
+Introductory Video :  https://www.youtube.com/watch?v=5uXszjhoXkI&feature=youtu.be
+
+
 Current Scenario:
 
 Ever wonder why large sports teams outperform small ones? Aren't all atheletes equal? The answer lies in Performance Analysis and smart training.
