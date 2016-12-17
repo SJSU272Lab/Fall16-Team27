@@ -1,14 +1,18 @@
-# Fall16-Team27
+#Together -  Fall16 Team27
 
 
-Project Abstract
+###Project Abstract
 
-Together
+
+
+## Live URL : http://together.mybluemix.net
 
 Introductory Video :  https://www.youtube.com/watch?v=5uXszjhoXkI&feature=youtu.be
 
+![badge](https://img.shields.io/travis/rust-lang/rust.svg) ![badge](https://img.shields.io/github/issues/SJSU272Lab/Together.svg) [![GitHub forks](https://img.shields.io/github/forks/SJSU272Lab/Together.svg?style=flat-square)](https://github.com/SJSU272Lab/Together/network) [![GitHub stars](https://img.shields.io/github/stars/SJSU272Lab/Together.svg?style=flat-square)](https://github.com/SJSU272Lab/Together/stargazers) [![](https://img.shields.io/badge/Closed%20Pull%20Request-9-green.svg)]() [![GitHub commits](https://img.shields.io/badge/commits-105-blue.svg)]()
 
-Current Scenario:
+
+### Current Scenario:
 
 Ever wonder why large sports teams outperform small ones? Aren't all atheletes equal? The answer lies in Performance Analysis and smart training.
 
@@ -16,7 +20,7 @@ Big Sports clubs are able to have their own sports analyst teams who personally 
 
 Small teams cannot afford this.
 
-Proposed Scenario:
+### Proposed Scenario:
 
 Using Fitness IOT devices such as Jawbone, Garmin Vivofit, FitBit etc, a small team can have their own Smart Training management system to store, analyse and visualize the fitness activity data of their players with a minimal investment of just the IOT device cost.
 
@@ -28,10 +32,10 @@ This can also be possibly extended with a mobile app to allow the coaches to mon
 
 
 
-Live URL : http://together.mybluemix.net
 
 
-Configuring Together 
+
+## Configuring Together 
 
 ================================================
 
@@ -39,6 +43,9 @@ Configuring Together
 To get started working with the FitBit API, you need to register at dev.fitbit.com. 
 
 Upon account registration, create a new App. You can choose to create a personal, research or Commercial App. It is advisable to create a personal app if you need access to time series data. 
+
+![app](http://i.imgur.com/0NaJUqM.png)
+![settings](http://i.imgur.com/xPcEDqR.jpg)
 
 
 Upon App Registration, do the following steps:
@@ -56,7 +63,7 @@ Upon App Registration, do the following steps:
 6) Run node bin/www
 
 
-Enhancing Together
+## Enhancing Together
 ==============================
 
 You can contribute to together with the following enhancement suggestions:
