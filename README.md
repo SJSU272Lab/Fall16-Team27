@@ -4,9 +4,6 @@
 ###Project Abstract
 
 
-
-## Live URL : http://together.mybluemix.net
-
 Introductory Video :  https://www.youtube.com/watch?v=5uXszjhoXkI&feature=youtu.be
 
 ![badge](https://img.shields.io/travis/rust-lang/rust.svg) ![badge](https://img.shields.io/github/issues/SJSU272Lab/Together.svg) [![GitHub forks](https://img.shields.io/github/forks/SJSU272Lab/Together.svg?style=flat-square)](https://github.com/SJSU272Lab/Together/network) [![GitHub stars](https://img.shields.io/github/stars/SJSU272Lab/Together.svg?style=flat-square)](https://github.com/SJSU272Lab/Together/stargazers) [![](https://img.shields.io/badge/Closed%20Pull%20Request-9-green.svg)]() [![GitHub commits](https://img.shields.io/badge/commits-105-blue.svg)]()
